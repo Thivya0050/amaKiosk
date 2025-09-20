@@ -13,7 +13,7 @@
     
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f5f5dc, #e6e6fa);
+            background: linear-gradient(135deg, #ccc3b5, #d1a35f);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             height: 100vh;
@@ -86,14 +86,14 @@
         .logo-container {
             background: white;
             border-radius: 5x;
-            padding: 10px 20px;
+            padding: 0px 30px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            animation: bounce 2s infinite;
+            animation: bounce 5s infinite;
         }
         
         .logo {
-            height: 30px;
-            width: 30px;
+            height: 20px;
+            width: 40px;
         }
         
         .halal-badge {
@@ -347,17 +347,15 @@
             background: white;
             border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             animation: slideIn 1s ease-out;
-            max-width: 350px;
-            width: 90%;
-            margin: 0 auto;
+            margin: 0 1px;
+            width: calc(100% - 2px);
         }
         
         .halal-logo-container {
             position: absolute;
             top: 5px;
-            left: 5px;
+            right: 5px;
             width: 60px;
             height: 60px;
             z-index: 15;
@@ -368,10 +366,10 @@
             background: white;
             border-radius: 15px;
             padding: 15px;
-            margin: 0 auto 20px auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 350px;
-            width: 90%;
+            margin: 0 1px 20px 1px;
+            width: calc(100% - 2px);
+            position: relative;
+            z-index: 10;
         }
         
         .logo-large {
@@ -379,7 +377,7 @@
             max-width: 400px;
             height: auto;
             margin: 0;
-            animation: rotate 3s ease-in-out infinite;
+            animation: rotate 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
             background: transparent;
             border: none;
             outline: none;
