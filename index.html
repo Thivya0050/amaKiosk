@@ -31,17 +31,12 @@
             animation: gradientShift 15s ease infinite;
             height: 100vh;
             overflow: hidden;
-            /* Samsung Tab A8 optimizations */
+            /* Tablet optimizations */
             -webkit-text-size-adjust: 100%;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            /* Smooth scrolling for Samsung Tab A8 */
             -webkit-overflow-scrolling: touch;
-            /* Ensure full viewport usage */
-            width: 100vw;
-            max-width: 100vw;
-            position: fixed;
-            top: 0;
-            left: 0;
         }
         
         .container {
@@ -49,10 +44,6 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            /* Samsung Tab A8 full screen optimization */
-            width: 100vw;
-            max-width: 100vw;
-            position: relative;
         }
         
         .header {
@@ -2127,7 +2118,7 @@
             left: 0;
             right: 0;
             height: 60px;
-            background: linear-gradient(0deg, rgba(128, 128, 128, 0.8), rgba(128, 128, 128, 0.3));
+            background: linear-gradient(0deg, rgba(139, 69, 19, 0.8), rgba(139, 69, 19, 0.3));
             z-index: 10;
             pointer-events: none;
             opacity: 0;
@@ -2155,57 +2146,62 @@
         }
 
         @keyframes bottomPulse {
-            0% { background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.2)); }
-            100% { background: linear-gradient(0deg, rgba(128, 128, 128, 0.9), rgba(128, 128, 128, 0.4)); }
+            0% { background: linear-gradient(0deg, rgba(139, 69, 19, 0.6), rgba(139, 69, 19, 0.2)); }
+            100% { background: linear-gradient(0deg, rgba(139, 69, 19, 0.9), rgba(139, 69, 19, 0.4)); }
         }
 
-        /* Samsung Tab A8 specific optimizations */
+        /* Samsung Tab A8 tablet view accessibility */
         @media screen and (max-width: 1024px) and (orientation: portrait) {
+            body {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+            }
+            
+            .container {
+                width: 100vw !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+            }
+            
             .header {
-                height: 80px !important;
-                margin-top: 5px !important;
-                max-width: 98% !important;
                 width: 98% !important;
+                max-width: 98% !important;
+                margin-top: 5px !important;
                 z-index: 1000 !important;
             }
             
             .menu-container {
-                height: calc(100vh - 90px) !important;
-                margin-top: 5px !important;
+                height: calc(100vh - 100px) !important;
             }
             
             .menu-content {
-                height: calc(100vh - 180px) !important;
-                padding: 10px !important;
+                height: calc(100vh - 200px) !important;
                 margin-bottom: 80px !important;
             }
             
-            .menu-grid {
-                gap: 10px !important;
+            .customize-content {
+                margin-bottom: 100px !important;
             }
             
-            .menu-item {
-                margin-bottom: 10px !important;
+            .customize-footer {
+                position: fixed !important;
+                bottom: 10px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                z-index: 1002 !important;
+                width: 90% !important;
             }
             
-            .add-to-cart-btn {
-                font-size: 12px !important;
-                padding: 6px 10px !important;
-            }
-            
-            /* Fix bottom navigation buttons - prevent overlap */
             #menu-page div[style*="position: absolute"] {
                 position: fixed !important;
-                bottom: 5px !important;
+                bottom: 20px !important;
                 left: 50% !important;
                 transform: translateX(-50%) !important;
                 z-index: 1001 !important;
-            }
-            
-            #menu-page div[style*="position: absolute"] button {
-                font-size: 12px !important;
-                padding: 8px 12px !important;
-                margin: 0 3px !important;
             }
         }
 
