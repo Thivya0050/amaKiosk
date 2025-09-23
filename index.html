@@ -1903,6 +1903,28 @@
             text-align: center;
         }
         
+        .cart-item-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-left: 10px;
+        }
+        
+        .customize-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        
+        .customize-btn:hover {
+            background: #218838;
+        }
+        
         .remove-btn {
             background: #dc3545;
             color: white;
@@ -1910,7 +1932,7 @@
             border-radius: 5px;
             padding: 5px 10px;
             cursor: pointer;
-            margin-left: 10px;
+            font-size: 12px;
         }
         
         .cart-total {
@@ -2122,6 +2144,252 @@
             0% { background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.2)); }
             100% { background: linear-gradient(0deg, rgba(128, 128, 128, 0.9), rgba(128, 128, 128, 0.4)); }
         }
+
+        /* Customization Page Styles */
+        .customize-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            height: 100%;
+        }
+        
+        /* Hide the main header on customization page */
+        .header.hidden {
+            display: none !important;
+        }
+        
+        /* Header with Logo and Title */
+        .customize-header {
+            height: 100px;
+            background: url('wood.png') repeat-x;
+            background-size: auto 100%;
+            background-color: #8B4513;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100;
+            max-width: 600px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+        
+        .logo-container {
+            background: white;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .customize-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            animation: none !important;
+            transform: none !important;
+        }
+        
+        .customize-title {
+            flex: 1;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Content Area */
+        .customize-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Item Info Display */
+        .item-info {
+            text-align: center;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .item-name {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .item-price {
+            font-size: 28px;
+            color: #8B4513;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Item Image */
+        .item-image-container {
+            margin-bottom: 30px;
+        }
+        
+        .item-image-placeholder {
+            width: 250px;
+            height: 250px;
+            background: #666;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .image-text {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Quantity Section */
+        .quantity-section {
+            background: url('wood.png') repeat-x;
+            background-size: auto 100%;
+            background-color: #8B4513;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .quantity-header-bar {
+            background: url('wood.png') repeat-x;
+            background-size: auto 100%;
+            background-color: #8B4513;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .quantity-header-text {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .quantity-rows {
+            background: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .quantity-row-label {
+            font-size: 16px;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            background: url('wood.png') repeat-x;
+            background-size: auto 100%;
+            background-color: #8B4513;
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quantity-plus, .quantity-minus {
+            background: url('wood.png') repeat-x;
+            background-size: auto 100%;
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quantity-plus:hover, .quantity-minus:hover {
+            background-color: #6B3410;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .quantity-input {
+            background: white;
+            border: none;
+            width: 60px;
+            height: 35px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin: 0 5px;
+        }
+        
+        /* Footer Buttons */
+        .customize-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background: hsl(36, 64%, 52%);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cancel-btn, .save-btn {
+            background: white;
+            color: #8B4513;
+            border: 2px solid #8B4513;
+            border-radius: 12px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cancel-btn:hover, .save-btn:hover {
+            background: #f0f0f0;
+            border-color: #6B3410;
+            color: #6B3410;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -2296,7 +2564,6 @@
         <!-- Cart Page -->
         <div id="cart-page" class="page">
             <div class="cart-container">
-                <h2 style="font-size: 32px; color: #333; margin-bottom: 20px; text-align: center;">Shopping Cart</h2>
                 <div id="cart-items">
                     <!-- Cart items will be populated by JavaScript -->
                 </div>
@@ -2312,10 +2579,79 @@
             </div>
         </div>
 
+        <!-- Customization Page -->
+        <div id="customize-page" class="page">
+            <div class="customize-container">
+                <!-- Header with Logo and Title -->
+                <div class="customize-header">
+                    <div class="logo-container">
+                        <img src="logo old.png" alt="Logo" class="customize-logo">
+                    </div>
+                    <div class="customize-title">CUSTOMISE</div>
+                </div>
+                
+                <div class="customize-content">
+                    <!-- Item Name and Price -->
+                    <div class="item-info">
+                        <h2 class="item-name" id="customize-item-name">Item Name</h2>
+                        <div class="item-price" id="customize-item-price">RM 0.00</div>
+                    </div>
+                    
+                    <!-- Item Image -->
+                    <div class="item-image-container">
+                        <div class="item-image-placeholder">
+                            <span class="image-text">IMAGE</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Quantity Section -->
+                    <div class="quantity-section">
+                        <div class="quantity-header-bar">
+                            <span class="quantity-header-text">Extra Rice</span>
+                        </div>
+                        
+                        <div class="quantity-rows">
+                            <div class="quantity-row">
+                                <span class="quantity-row-label" id="extra-item-1">Extra Chilli Sauce</span>
+                                <div class="quantity-control">
+                                    <button class="quantity-plus" onclick="updateCustomizeQuantity(1, 1)">+</button>
+                                    <input type="number" class="quantity-input" id="quantity-1" value="1" min="0">
+                                    <button class="quantity-minus" onclick="updateCustomizeQuantity(1, -1)">-</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quantity-row">
+                                <span class="quantity-row-label" id="extra-item-2">Extra Ketchup</span>
+                                <div class="quantity-control">
+                                    <button class="quantity-plus" onclick="updateCustomizeQuantity(2, 1)">+</button>
+                                    <input type="number" class="quantity-input" id="quantity-2" value="1" min="0">
+                                    <button class="quantity-minus" onclick="updateCustomizeQuantity(2, -1)">-</button>
+                                </div>
+                            </div>
+                            
+                            <div class="quantity-row">
+                                <span class="quantity-row-label" id="main-quantity-label">Quantity</span>
+                                <div class="quantity-control">
+                                    <button class="quantity-plus" onclick="updateCustomizeQuantity(0, 1)">+</button>
+                                    <input type="number" class="quantity-input" id="quantity-0" value="1" min="1">
+                                    <button class="quantity-minus" onclick="updateCustomizeQuantity(0, -1)">-</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Buttons -->
+                <div class="customize-footer">
+                    <button class="cancel-btn" onclick="cancelCustomization()">CANCEL</button>
+                    <button class="save-btn" onclick="saveCustomization()">SAVE CHANGES</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Payment Page -->
         <div id="payment-page" class="page">
             <div class="payment-container">
-                <h2 style="font-size: 32px; color: #333; margin-bottom: 30px; text-align: center;">Payment Method</h2>
                 <div class="payment-options">
                     <div class="payment-option" onclick="selectPayment('card')">
                         <div style="font-size: 48px; margin-bottom: 10px;">💳</div>
@@ -2406,7 +2742,7 @@
                 diningPreference: 'DINING PREFERENCE',
                 eatIn: 'EAT IN',
                 takeAway: 'TAKE AWAY',
-                shoppingCart: 'Shopping Cart',
+                Cart: 'Cart',
                 totalAmount: 'TOTAL AMOUNT',
                 paymentMethod: 'PAYMENT METHOD',
                 orderSummary: 'ORDER SUMMARY',
@@ -2430,7 +2766,16 @@
                 cartEmpty: 'YOUR CART IS EMPTY',
                 orderNumber: 'ORDER NUMBER',
                 quantity: 'QUANTITY',
-                remove: 'REMOVE'
+                remove: 'REMOVE',
+                customize: 'CUSTOMISE',
+                extraRice: 'EXTRA RICE',
+                extraNoodles: 'EXTRA NOODLES',
+                extraSides: 'EXTRA SIDES',
+                extraIceCubes: 'EXTRA ICE CUBES',
+                extraChilliSauce: 'EXTRA CHILLI SAUCE',
+                extraKetchup: 'EXTRA KETCHUP',
+                saveChanges: 'SAVE CHANGES',
+                cancel: 'CANCEL'
             },
             malay: {
                 startOrder: 'MULA PESANAN',
@@ -2438,7 +2783,7 @@
                 diningPreference: 'PILIHAN MAKAN',
                 eatIn: 'MAKAN DI SINI',
                 takeAway: 'BUNGKUS',
-                shoppingCart: 'TROLI BELI-BELAH',
+                Cart: 'TROLI',
                 totalAmount: 'JUMLAH KESELURUHAN',
                 paymentMethod: 'KAEDAH PEMBAYARAN',
                 orderSummary: 'RINGKASAN PESANAN',
@@ -2462,7 +2807,16 @@
                 cartEmpty: 'TROLI ANDA KOSONG',
                 orderNumber: 'NOMBOR PESANAN',
                 quantity: 'KUANTITI',
-                remove: 'BUANG'
+                remove: 'BUANG',
+                customize: 'SESUAIKAN',
+                extraRice: 'NASI TAMBAHAN',
+                extraNoodles: 'MEE TAMBAHAN',
+                extraSides: 'HIDANGAN TAMBAHAN',
+                extraIceCubes: 'AIS TAMBAHAN',
+                extraChilliSauce: 'SOS CILI TAMBAHAN',
+                extraKetchup: 'KETCHUP TAMBAHAN',
+                saveChanges: 'SIMPAN PERUBAHAN',
+                cancel: 'BATAL'
             },
             mandarin: {
                 startOrder: '开始点餐',
@@ -2470,7 +2824,7 @@
                 diningPreference: '用餐偏好',
                 eatIn: '堂食',
                 takeAway: '外带',
-                shoppingCart: '购物车',
+                Cart: '购物车',
                 totalAmount: '总金额',
                 paymentMethod: '付款方式',
                 orderSummary: '订单摘要',
@@ -2494,7 +2848,16 @@
                 cartEmpty: '您的购物车是空的',
                 orderNumber: '订单号',
                 quantity: '数量',
-                remove: '移除'
+                remove: '移除',
+                customize: '自定义',
+                extraRice: '额外米饭',
+                extraNoodles: '额外面条',
+                extraSides: '额外配菜',
+                extraIceCubes: '额外冰块',
+                extraChilliSauce: '额外辣椒酱',
+                extraKetchup: '额外番茄酱',
+                saveChanges: '保存更改',
+                cancel: '取消'
             },
             tamil: {
                 startOrder: 'ஆர்டர் தொடங்கு',
@@ -2502,7 +2865,7 @@
                 diningPreference: 'உணவு விருப்பம்',
                 eatIn: 'இங்கே சாப்பிடு',
                 takeAway: 'எடுத்துச் செல்',
-                shoppingCart: 'கடை வண்டி',
+                Cart: 'கடை வண்டி',
                 totalAmount: 'மொத்த தொகை',
                 paymentMethod: 'பணம் செலுத்தும் முறை',
                 orderSummary: 'ஆர்டர் சுருக்கம்',
@@ -2526,7 +2889,16 @@
                 cartEmpty: 'உங்கள் கார்ட் காலியாக உள்ளது',
                 orderNumber: 'ஆர்டர் எண்',
                 quantity: 'அளவு',
-                remove: 'நீக்கு'
+                remove: 'நீக்கு',
+                customize: 'தனிப்பயனாக்கு',
+                extraRice: 'கூடுதல் அரிசி',
+                extraNoodles: 'கூடுதல் நூடுல்ஸ்',
+                extraSides: 'கூடுதல் பக்க உணவு',
+                extraIceCubes: 'கூடுதல் பனிக்கட்டிகள்',
+                extraChilliSauce: 'கூடுதல் மிளகாய் சாஸ்',
+                extraKetchup: 'கூடுதல் கெட்சப்',
+                saveChanges: 'மாற்றங்களை சேமி',
+                cancel: 'ரத்து செய்'
             }
         };
 
@@ -2581,7 +2953,7 @@
                 'landing-page': '',
                 'language-page': t.selectLanguage,
                 'menu-page': getMenuPageTitle(),
-                'cart-page': t.shoppingCart,
+                'cart-page': t.Cart,
                 'payment-page': t.paymentMethod,
                 'confirmation-page': t.orderConfirmed
             };
@@ -2604,7 +2976,7 @@
                            currentLanguage === 'mandarin' ? 'zh' : 
                            currentLanguage === 'tamil' ? 'ta' : 'en';
             
-            return categoryNames[currentCategory] ? categoryNames[currentCategory][langKey] : t.shoppingCart;
+            return categoryNames[currentCategory] ? categoryNames[currentCategory][langKey] : t.Cart;
         }
         
         
@@ -2685,10 +3057,10 @@
             if (menuPage) {
                 const categoryBtns = menuPage.querySelectorAll('.category-btn');
                 const categoryNames = {
-                    rice: { en: '🍚 Rice', ms: '🍚 Nasi', zh: '🍚 米饭', ta: '🍚 அரிசி' },
-                    noodles: { en: '🍜 Noodles', ms: '🍜 Mee', zh: '🍜 面条', ta: '🍜 நூடுல்ஸ்' },
-                    sides: { en: '🥗 Sides', ms: '🥗 Hidangan Sampingan', zh: '🥗 配菜', ta: '🥗 பக்க உணவு' },
-                    drinks: { en: '🥤 Drinks', ms: '🥤 Minuman', zh: '🥤 饮料', ta: '🥤 பானங்கள்' }
+                    rice: { en: ' Rice', ms: ' Nasi', zh: ' 米饭', ta: ' அரிசி' },
+                    noodles: { en: ' Noodles', ms: ' Mee', zh: ' 面条', ta: ' நூடுல்ஸ்' },
+                    sides: { en: ' Sides', ms: ' Hidangan Sampingan', zh: ' 配菜', ta: ' பக்க உணவு' },
+                    drinks: { en: ' Drinks', ms: ' Minuman', zh: ' 饮料', ta: ' பானங்கள்' }
                 };
                 
                 categoryBtns.forEach((btn, index) => {
@@ -2708,7 +3080,7 @@
             const cartPage = document.getElementById('cart-page');
             if (cartPage) {
                 const cartTitle = cartPage.querySelector('h2');
-                if (cartTitle) cartTitle.textContent = t.shoppingCart;
+                if (cartTitle) cartTitle.textContent = t.Cart;
                 
                 const totalTitle = cartPage.querySelector('h3');
                 if (totalTitle) totalTitle.textContent = t.totalAmount;
@@ -2759,7 +3131,7 @@
                 const cartBtn = document.querySelector('#menu-page button[onclick*="cart-page"]');
                 if (cartBtn) {
                     const cartCount = document.getElementById('cart-count');
-                    cartBtn.textContent = '🛒 ' + t.shoppingCart + ' (' + (cartCount ? cartCount.textContent : '0') + ')';
+                    cartBtn.textContent = '🛒 ' + t.Cart + ' (' + (cartCount ? cartCount.textContent : '0') + ')';
                 }
             }
             
@@ -3053,7 +3425,10 @@
                             <span class="quantity">${item.quantity}</span>
                             <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
                         </div>
-                        <button class="remove-btn" onclick="removeFromCart(${item.id})">${t.back}</button>
+                        <div class="cart-item-actions">
+                            <button class="customize-btn" onclick="customizeItem(${item.id})">${t.customize}</button>
+                            <button class="remove-btn" onclick="removeFromCart(${item.id})">${t.remove}</button>
+                        </div>
                     </div>
                 `).join('');
                 
@@ -3078,6 +3453,211 @@
             cart = cart.filter(item => item.id !== itemId);
             updateCartDisplay();
             updateCartCount();
+        }
+
+        // Customization functionality
+        let currentCustomizeItem = null;
+        let originalPrice = 0;
+        let customizationPrices = {
+            extraChilliSauce: 0.50,
+            extraKetchup: 0.30,
+            extraRice: 1.00,
+            extraNoodles: 1.50,
+            extraSides: 0.80,
+            extraIceCubes: 0.20
+        };
+
+        function customizeItem(itemId) {
+            currentCustomizeItem = cart.find(item => item.id === itemId);
+            if (currentCustomizeItem) {
+                // Store original price
+                originalPrice = currentCustomizeItem.price;
+                // Hide main header for customization page
+                document.querySelector('.header').classList.add('hidden');
+                showPage('customize-page');
+                updateCustomizePage();
+            }
+        }
+
+        function updateCustomizePage() {
+            if (!currentCustomizeItem) return;
+            
+            const t = translations[currentLanguage];
+            
+            // Update the image placeholder with actual item image
+            const imagePlaceholder = document.querySelector('.item-image-placeholder');
+            imagePlaceholder.innerHTML = `<img src="${currentCustomizeItem.image}" alt="${currentCustomizeItem.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">`;
+            
+            // Set the main quantity input to current item quantity
+            const mainQuantityInput = document.getElementById('quantity-0');
+            if (mainQuantityInput) {
+                mainQuantityInput.value = currentCustomizeItem.quantity;
+            }
+            
+            // Update the title
+            const customizeTitle = document.querySelector('.customize-title');
+            if (customizeTitle) {
+                customizeTitle.textContent = t.customize;
+            }
+            
+            // Update the section header based on item category
+            const sectionHeader = document.querySelector('.quantity-header-text');
+            if (sectionHeader) {
+                const itemCategory = getItemCategory(currentCustomizeItem.name);
+                switch(itemCategory) {
+                    case 'rice':
+                        sectionHeader.textContent = t.extraRice;
+                        break;
+                    case 'noodles':
+                        sectionHeader.textContent = t.extraNoodles;
+                        break;
+                    case 'sides':
+                        sectionHeader.textContent = t.extraSides;
+                        break;
+                    case 'drinks':
+                        sectionHeader.textContent = t.extraIceCubes;
+                        break;
+                    default:
+                        sectionHeader.textContent = t.extraRice;
+                }
+            }
+            
+            // Update the quantity row labels
+            const mainQuantityLabel = document.getElementById('main-quantity-label');
+            if (mainQuantityLabel) {
+                mainQuantityLabel.textContent = t.quantity;
+            }
+            
+            const extraItem1 = document.getElementById('extra-item-1');
+            const extraItem2 = document.getElementById('extra-item-2');
+            if (extraItem1) extraItem1.textContent = t.extraChilliSauce;
+            if (extraItem2) extraItem2.textContent = t.extraKetchup;
+            
+            // Update item name and price
+            const itemName = document.getElementById('customize-item-name');
+            const itemPrice = document.getElementById('customize-item-price');
+            if (itemName) itemName.textContent = getTranslatedItemName(currentCustomizeItem.name);
+            if (itemPrice) itemPrice.textContent = `RM ${currentCustomizeItem.price.toFixed(2)}`;
+            
+            // Update footer buttons
+            const cancelBtn = document.querySelector('.cancel-btn');
+            const saveBtn = document.querySelector('.save-btn');
+            if (cancelBtn) cancelBtn.textContent = t.cancel;
+            if (saveBtn) saveBtn.textContent = t.saveChanges;
+            
+            // Update price display
+            updateCustomizePrice();
+        }
+        
+        function getItemCategory(itemName) {
+            const allItems = {
+                rice: getMenuItems('rice'),
+                noodles: getMenuItems('noodles'),
+                sides: getMenuItems('sides'),
+                drinks: getMenuItems('drinks')
+            };
+            
+            for (const [category, items] of Object.entries(allItems)) {
+                if (items.find(item => item.name === itemName)) {
+                    return category;
+                }
+            }
+            return 'rice'; // default
+        }
+        
+        function updateCustomizeQuantity(index, change) {
+            const quantityInput = document.getElementById(`quantity-${index}`);
+            if (!quantityInput) return;
+            
+            let currentValue = parseInt(quantityInput.value) || 0;
+            let newValue = currentValue + change;
+            
+            // For main quantity (index 0), minimum is 1
+            if (index === 0) {
+                newValue = Math.max(1, newValue);
+            } else {
+                // For extra items, minimum is 0
+                newValue = Math.max(0, newValue);
+            }
+            
+            quantityInput.value = newValue;
+            
+            // Update price after quantity change
+            updateCustomizePrice();
+        }
+        
+        function updateCustomizePrice() {
+            if (!currentCustomizeItem) return;
+            
+            // Calculate base price (original price * main quantity)
+            const mainQuantity = parseInt(document.getElementById('quantity-0').value) || 1;
+            let totalPrice = originalPrice * mainQuantity;
+            
+            // Add extra item prices
+            const extraChilliQuantity = parseInt(document.getElementById('quantity-1').value) || 0;
+            const extraKetchupQuantity = parseInt(document.getElementById('quantity-2').value) || 0;
+            
+            const itemCategory = getItemCategory(currentCustomizeItem.name);
+            let extraPrice = 0;
+            
+            switch(itemCategory) {
+                case 'rice':
+                    extraPrice = (extraChilliQuantity * customizationPrices.extraChilliSauce) + 
+                                (extraKetchupQuantity * customizationPrices.extraKetchup);
+                    break;
+                case 'noodles':
+                    extraPrice = (extraChilliQuantity * customizationPrices.extraChilliSauce) + 
+                                (extraKetchupQuantity * customizationPrices.extraKetchup);
+                    break;
+                case 'sides':
+                    extraPrice = (extraChilliQuantity * customizationPrices.extraChilliSauce) + 
+                                (extraKetchupQuantity * customizationPrices.extraKetchup);
+                    break;
+                case 'drinks':
+                    extraPrice = (extraChilliQuantity * customizationPrices.extraIceCubes) + 
+                                (extraKetchupQuantity * customizationPrices.extraIceCubes);
+                    break;
+            }
+            
+            totalPrice += extraPrice;
+            
+            // Update the item price in cart
+            currentCustomizeItem.price = totalPrice / mainQuantity;
+            
+            // Update price display
+            const itemPrice = document.getElementById('customize-item-price');
+            if (itemPrice) {
+                itemPrice.textContent = `RM ${currentCustomizeItem.price.toFixed(2)}`;
+            }
+            
+            // Update cart display
+            updateCartDisplay();
+        }
+
+        function saveCustomization() {
+            if (!currentCustomizeItem) return;
+            
+            // Get the quantity from the main quantity input (index 0)
+            const quantityInput = document.getElementById('quantity-0');
+            if (quantityInput) {
+                const newQuantity = parseInt(quantityInput.value) || 1;
+                currentCustomizeItem.quantity = newQuantity;
+                
+                // Show main header again
+                document.querySelector('.header').classList.remove('hidden');
+                
+                // Update cart display and go back to cart
+                updateCartDisplay();
+                showPage('cart-page');
+            }
+        }
+
+        function cancelCustomization() {
+            // Show main header again
+            document.querySelector('.header').classList.remove('hidden');
+            
+            // Go back to cart without saving changes
+            showPage('cart-page');
         }
 
         function updateCartCount() {
@@ -3263,7 +3843,7 @@
             resetIdleTimer();
             
             console.log('🎉 Complete Amakiosk Loaded Successfully!');
-            console.log('Features: Full kiosk flow, multi-language support, shopping cart, payment system, promotional slider, boundary scroll highlighting');
+            console.log('Features: Full kiosk flow, multi-language support, cart, payment system, promotional slider, boundary scroll highlighting');
             console.log('Current active page:', document.querySelector('.page.active')?.id);
             console.log('Header element:', document.querySelector('.header'));
         });
