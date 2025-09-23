@@ -11,6 +11,19 @@
             box-sizing: border-box;
         }
     
+        /* Prevent visual glitches and improve rendering */
+        * {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        img, button, .menu-item, .category-btn, .add-to-cart-btn {
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+    
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #ccc3b5, #d1a35f);
@@ -352,18 +365,29 @@
             width: calc(100% - 2px);
         }
         
-        .halal-logo-container {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            width: 60px;
-            height: 60px;
-            z-index: 15;
+        .halal-logo-fixed {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            z-index: 1000;
             animation: pulse 2s infinite;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background: white;
+            padding: 10px;
+            display: none; /* Hidden by default */
+        }
+
+        /* Show halal logo only on landing page */
+        .halal-logo-fixed.show {
+            display: block;
         }
         
         .logo-container-main {
-            background: white;
+            background: transparent;
             border-radius: 15px;
             padding: 15px;
             margin: 0 1px 20px 1px;
@@ -610,6 +634,49 @@
             }
         }
         
+        /* Samsung Tab A8 Landscape Mode - 1920x1200 */
+        @media (min-width: 1200px) and (max-width: 1920px) and (min-height: 800px) {
+            .menu-container {
+                flex-direction: row;
+                height: 100%;
+                gap: 0;
+            }
+            
+            .menu-sidebar {
+                width: 200px;
+                padding: 20px 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                justify-content: center;
+                align-items: stretch;
+                max-height: none;
+                background: linear-gradient(180deg, #f5f5f5, #e8e8e8);
+                border-radius: 0 15px 15px 0;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .category-btn {
+                flex: none;
+                width: 100%;
+                min-width: 0;
+                padding: 18px 12px;
+                font-size: 16px;
+                margin: 0;
+                min-height: 60px;
+                border-radius: 12px;
+                font-weight: 600;
+                text-align: center;
+            }
+            
+            .menu-content {
+                padding: 25px 20px;
+                flex: 1;
+                overflow-y: auto;
+                background: linear-gradient(135deg, #fafafa, #f0f0f0);
+            }
+        }
+        
         /* Tablets (768px - 1023px) */
         @media (min-width: 768px) and (max-width: 1023px) {
             .header {
@@ -844,7 +911,19 @@
             .logo, .menu-item img {
                 image-rendering: -webkit-optimize-contrast;
                 image-rendering: crisp-edges;
+                image-rendering: pixelated;
             }
+        }
+        
+        /* Global image rendering fixes */
+        .menu-item img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
         
         /* Prevent design collapse on very small screens */
@@ -932,6 +1011,11 @@
             .menu-sidebar {
                 width: 200px;
                 padding: 30px 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: stretch;
+                height: 100%;
             }
             
             .category-btn {
@@ -968,6 +1052,13 @@
                 border-radius: 10px;
                 margin-bottom: 15px;
                 background: white;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
             }
             
             .menu-item h3 {
@@ -993,6 +1084,12 @@
                 min-height: 45px;
                 margin-top: auto;
                 flex-shrink: 0;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
             }
         }
         
@@ -1329,7 +1426,7 @@
             #language-title {
                 font-size: 28px !important;
                 padding: 12px 25px !important;
-                margin-bottom: 25px !important;
+                margin-bottom: 20px !important;
             }
             
             #dining-title {
@@ -1340,7 +1437,7 @@
             
             .language-buttons {
                 gap: 15px;
-                margin-bottom: 30px;
+                margin-bottom: 20px;
             }
             
             .lang-btn {
@@ -1363,31 +1460,49 @@
             .menu-container {
                 flex-direction: column;
                 height: 100%;
+                gap: 0;
             }
             
             .menu-sidebar {
                 width: 100%;
-                padding: 20px;
+                padding: 15px 20px 10px 20px;
                 display: flex;
-                flex-wrap: wrap;
-                gap: 15px;
+                flex-wrap: nowrap;
+                gap: 12px;
                 justify-content: center;
-                max-height: 120px;
+                align-items: center;
+                max-height: 80px;
+                background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+                border-radius: 0 0 15px 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             }
             
             .category-btn {
-                width: auto;
-                min-width: 140px;
-                padding: 15px 20px;
-                font-size: 16px;
-                margin: 5px;
-                min-height: 50px;
+                flex: 1;
+                min-width: 0;
+                padding: 12px 8px;
+                font-size: 14px;
+                margin: 0;
+                min-height: 45px;
+                border-radius: 12px;
+                font-weight: 600;
+                text-align: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                transform: translateZ(0);
+                -webkit-transform: translateZ(0);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
             }
             
             .menu-content {
-                padding: 25px 20px;
+                padding: 20px 15px;
                 flex: 1;
                 overflow-y: auto;
+                background: linear-gradient(135deg, #fafafa, #f0f0f0);
             }
             
             .menu-grid {
@@ -1945,6 +2060,68 @@
             width: 0%;
             transition: width 0.1s ease;
         }
+
+        /* Boundary-based scroll highlighting */
+        .menu-content {
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .scroll-top-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(139, 69, 19, 0.8), rgba(139, 69, 19, 0.3));
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .scroll-top-highlight.show {
+            opacity: 1;
+        }
+
+        .scroll-bottom-highlight {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(0deg, rgba(128, 128, 128, 0.8), rgba(128, 128, 128, 0.3));
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .scroll-bottom-highlight.show {
+            opacity: 1;
+        }
+
+        /* Add pulsing effect for top highlight */
+        .scroll-top-highlight.show {
+            animation: topPulse 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes topPulse {
+            0% { background: linear-gradient(180deg, rgba(139, 69, 19, 0.6), rgba(139, 69, 19, 0.2)); }
+            100% { background: linear-gradient(180deg, rgba(139, 69, 19, 0.9), rgba(139, 69, 19, 0.4)); }
+        }
+
+        /* Add subtle pulse for bottom highlight */
+        .scroll-bottom-highlight.show {
+            animation: bottomPulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes bottomPulse {
+            0% { background: linear-gradient(0deg, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0.2)); }
+            100% { background: linear-gradient(0deg, rgba(128, 128, 128, 0.9), rgba(128, 128, 128, 0.4)); }
+        }
     </style>
 </head>
 <body>
@@ -1989,7 +2166,7 @@
                         <source src="ALI ae.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
-                </div>
+                  </div>
                 
                 <!-- Promotional Section -->
                 <div class="promotional-section">
@@ -2006,7 +2183,7 @@
                         <div class="promo-slide">
                             <div class="promo-banner">
                                 <div class="promo-content">
-                                    <h3>🍜 New Menu Items</h3>
+                                    <h3> New Menu Items</h3>
                                     <p>Try our latest delicious dishes</p>
                                     <div class="promo-badge">NEW</div>
                                 </div>
@@ -2030,8 +2207,7 @@
                 </div>
                 
                 <div class="content">
-                    <img src="halal.png" alt="Halal" class="halal-logo-container">
-                    <h1 class="title">VANAKKAM</h1>
+                    <h1 class="title">Welcome to</h1>
                     <p class="subtitle">ALI MUTHU AH HOCK</p>
                     <p class="minisubtitle">#1ForAll, All For 1</p>
                     <button class="start-button" onclick="showPage('language-page')">
@@ -2071,22 +2247,22 @@
                 
                 <!-- Language Selection Segment -->
                 <div style="background: white; border-radius: 25px; padding: 40px; text-align: center; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); max-width: 600px; width: 90%; position: relative; z-index: 10; margin-bottom: 20px;">
-                    <h1 id="language-title" style="font-size: 32px; color: #333; margin-bottom: 30px; background: url('wood.png') repeat; background-size: 200px 100%; color: white; padding: 15px 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">SELECT LANGUAGE</h1>
-                    <div class="language-buttons" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-                        <button class="lang-btn" onclick="selectLanguage('english')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-width: 200px;">🇺🇸 English</button>
-                        <button class="lang-btn" onclick="selectLanguage('malay')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-width: 200px;">🇲🇾 Bahasa Malaysia</button>
-                        <button class="lang-btn" onclick="selectLanguage('mandarin')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-width: 200px;">🇨🇳 中文</button>
-                        <button class="lang-btn" onclick="selectLanguage('tamil')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-width: 200px;">🇮🇳 தமிழ்</button>
+                    <h1 id="language-title" style="font-size: 32px; color: #333; margin: -40px -40px 30px -40px; background: url('wood.png') repeat; background-size: 200px 100%; color: white; padding: 15px 40px; border-radius: 15px; display: block; width: calc(100% + 80px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">SELECT LANGUAGE</h1>
+                    <div class="language-buttons" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; justify-content: center; width: 100%; margin: 0 auto;">
+                        <button class="lang-btn" onclick="selectLanguage('english')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-height: 80px; width: 100%;"> English</button>
+                        <button class="lang-btn" onclick="selectLanguage('malay')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-height: 80px; width: 100%;"> Bahasa Malaysia</button>
+                        <button class="lang-btn" onclick="selectLanguage('mandarin')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-height: 80px; width: 100%;"> 中文</button>
+                        <button class="lang-btn" onclick="selectLanguage('tamil')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-height: 80px; width: 100%;"> தமிழ்</button>
                     </div>
                 </div>
                 
                 <!-- Dining Preference Segment -->
                 <div style="background: white; border-radius: 25px; padding: 40px; text-align: center; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); max-width: 600px; width: 90%; position: relative; z-index: 10;">
-                    <h2 id="dining-title" style="font-size: 32px; color: #333; margin-bottom: 30px; background: url('wood.png') repeat; background-size: 200px 100%; color: white; padding: 15px 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">DINING PREFERENCE</h2>
+                    <h2 id="dining-title" style="font-size: 32px; color: #333; margin: -40px -40px 30px -40px; background: url('wood.png') repeat; background-size: 200px 100%; color: white; padding: 15px 40px; border-radius: 15px; display: block; width: calc(100% + 80px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">DINING PREFERENCE</h2>
                     <div class="dining-options">
-                        <div style="display: flex; gap: 20px; justify-content: center;">
-                            <button class="dining-btn" onclick="selectDining('eat-in')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-width: 200px;">🍽️ EAT IN</button>
-                            <button class="dining-btn" onclick="selectDining('take-away')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-width: 200px;">🥡 TAKE AWAY</button>
+                        <div style="display: flex; gap: 20px; justify-content: center; width: 100%; margin: 0 auto;">
+                            <button class="dining-btn" onclick="selectDining('eat-in')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-height: 80px; flex: 1; width: 100%;"> EAT IN</button>
+                            <button class="dining-btn" onclick="selectDining('take-away')" style="background: url('wood.png') repeat; background-size: 200px 100%; color: white; border: none; border-radius: 15px; padding: 20px 30px; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: all 0.3s ease; min-height: 80px; flex: 1; width: 100%;"> TAKE AWAY</button>
                         </div>
                     </div>
                 </div>
@@ -2097,12 +2273,14 @@
         <div id="menu-page" class="page">
             <div class="menu-container">
                 <div class="menu-sidebar">
-                    <button class="category-btn active" onclick="showCategory('rice')">🍚 Rice</button>
-                    <button class="category-btn" onclick="showCategory('noodles')">🍜 Noodles</button>
-                    <button class="category-btn" onclick="showCategory('sides')">🥗 Sides</button>
-                    <button class="category-btn" onclick="showCategory('drinks')">🥤 Drinks</button>
+                    <button class="category-btn active" onclick="showCategory('rice')" id="rice-btn"> Rice</button>
+                    <button class="category-btn" onclick="showCategory('noodles')" id="noodles-btn"> Noodles</button>
+                    <button class="category-btn" onclick="showCategory('sides')" id="sides-btn"> Sides</button>
+                    <button class="category-btn" onclick="showCategory('drinks')" id="drinks-btn"> Drinks</button>
                 </div>
                 <div class="menu-content">
+                    <div class="scroll-top-highlight"></div>
+                    <div class="scroll-bottom-highlight"></div>
                     <div id="menu-grid" class="menu-grid">
                         <!-- Menu items will be populated by JavaScript -->
                     </div>
@@ -2192,6 +2370,10 @@
 
     </div>
     
+    <!-- Fixed Halal Logo -->
+    <img src="halal.png" alt="Halal" class="halal-logo-fixed">
+    
+    
     <div class="status">
         🎉 Kiosk Preview Ready!<br>
         Click START ORDER to begin
@@ -2220,41 +2402,67 @@
         const translations = {
             english: {
                 startOrder: 'START ORDER',
-                selectLanguage: 'Select Language',
-                diningPreference: 'Dining Preference',
-                eatIn: 'Eat In',
-                takeAway: 'Take Away',
+                selectLanguage: 'SELECT LANGUAGE',
+                diningPreference: 'DINING PREFERENCE',
+                eatIn: 'EAT IN',
+                takeAway: 'TAKE AWAY',
                 shoppingCart: 'Shopping Cart',
-                totalAmount: 'Total Amount',
-                paymentMethod: 'Payment Method',
-                orderSummary: 'Order Summary',
-                orderConfirmed: 'Order Confirmed',
-                thankYou: 'Thank you for your order!',
-                returningToMain: 'Returning to main page in',
+                totalAmount: 'TOTAL AMOUNT',
+                paymentMethod: 'PAYMENT METHOD',
+                orderSummary: 'ORDER SUMMARY',
+                orderConfirmed: 'ORDER CONFIRMED',
+                thankYou: 'THANK YOU FOR YOUR ORDER!',
+                returningToMain: 'RETURNING TO MAIN PAGE IN',
                 seconds: 'seconds',
-                addToCart: 'Add to Cart',
-                back: 'Back',
-                pay: 'Pay',
-                customize: 'Customize'
+                addToCart: 'ADD TO CART',
+                back: 'BACK',
+                pay: 'PAY',
+                customize: 'CUSTOMIZE',
+                rice: 'RICE',
+                noodles: 'NOODLES',
+                sides: 'SIDES',
+                drinks: 'DRINKS',
+                creditDebitCard: 'CREDIT/DEBIT CARD',
+                touchNGo: 'TOUCH \'N GO',
+                qrCode: 'QR CODE',
+                cashAtCounter: 'CASH AT COUNTER',
+                total: 'TOTAL',
+                cartEmpty: 'YOUR CART IS EMPTY',
+                orderNumber: 'ORDER NUMBER',
+                quantity: 'QUANTITY',
+                remove: 'REMOVE'
             },
             malay: {
                 startOrder: 'MULA PESANAN',
-                selectLanguage: 'Pilih Bahasa',
-                diningPreference: 'Pilihan Makan',
-                eatIn: 'Makan Di Sini',
-                takeAway: 'Bungkus',
-                shoppingCart: 'Troli Beli-belah',
-                totalAmount: 'Jumlah Keseluruhan',
-                paymentMethod: 'Kaedah Pembayaran',
-                orderSummary: 'Ringkasan Pesanan',
-                orderConfirmed: 'Pesanan Disahkan!',
-                thankYou: 'Terima kasih atas pesanan anda!',
-                returningToMain: 'Kembali ke halaman utama dalam',
+                selectLanguage: 'PILIH BAHASA',
+                diningPreference: 'PILIHAN MAKAN',
+                eatIn: 'MAKAN DI SINI',
+                takeAway: 'BUNGKUS',
+                shoppingCart: 'TROLI BELI-BELAH',
+                totalAmount: 'JUMLAH KESELURUHAN',
+                paymentMethod: 'KAEDAH PEMBAYARAN',
+                orderSummary: 'RINGKASAN PESANAN',
+                orderConfirmed: 'PESANAN DISAHKAN!',
+                thankYou: 'TERIMA KASIH ATAS PESANAN ANDA!',
+                returningToMain: 'KEMBALI KE HALAMAN UTAMA DALAM',
                 seconds: 'saat',
-                addToCart: 'Tambah ke Troli',
-                back: 'Kembali',
-                pay: 'Bayar',
-                customize: 'Sesuaikan'
+                addToCart: 'TAMBAH KE TROLI',
+                back: 'KEMBALI',
+                pay: 'BAYAR',
+                customize: 'SESUAIKAN',
+                rice: 'NASI',
+                noodles: 'MEE',
+                sides: 'HIDANGAN SAMPINGAN',
+                drinks: 'MINUMAN',
+                creditDebitCard: 'KAD KREDIT/DEBIT',
+                touchNGo: 'TOUCH \'N GO',
+                qrCode: 'KOD QR',
+                cashAtCounter: 'TUNAI DI KAUNTER',
+                total: 'JUMLAH',
+                cartEmpty: 'TROLI ANDA KOSONG',
+                orderNumber: 'NOMBOR PESANAN',
+                quantity: 'KUANTITI',
+                remove: 'BUANG'
             },
             mandarin: {
                 startOrder: '开始点餐',
@@ -2273,7 +2481,20 @@
                 addToCart: '加入购物车',
                 back: '返回',
                 pay: '付款',
-                customize: '定制'
+                customize: '自定义',
+                rice: '米饭',
+                noodles: '面条',
+                sides: '配菜',
+                drinks: '饮料',
+                creditDebitCard: '信用卡/借记卡',
+                touchNGo: 'Touch \'N Go',
+                qrCode: '二维码',
+                cashAtCounter: '柜台现金支付',
+                total: '总计',
+                cartEmpty: '您的购物车是空的',
+                orderNumber: '订单号',
+                quantity: '数量',
+                remove: '移除'
             },
             tamil: {
                 startOrder: 'ஆர்டர் தொடங்கு',
@@ -2292,7 +2513,20 @@
                 addToCart: 'கார்ட்டில் சேர்',
                 back: 'திரும்பு',
                 pay: 'பணம் செலுத்து',
-                customize: 'தனிப்பயனாக்கு'
+                customize: 'தனிப்பயனாக்கு',
+                rice: 'அரிசி',
+                noodles: 'நூடுல்ஸ்',
+                sides: 'பக்க உணவு',
+                drinks: 'பானங்கள்',
+                creditDebitCard: 'கிரெடிட்/டெபிட் கார்டு',
+                touchNGo: 'Touch \'N Go',
+                qrCode: 'QR கோடு',
+                cashAtCounter: 'கவுண்டரில் பணம்',
+                total: 'மொத்தம்',
+                cartEmpty: 'உங்கள் கார்ட் காலியாக உள்ளது',
+                orderNumber: 'ஆர்டர் எண்',
+                quantity: 'அளவு',
+                remove: 'நீக்கு'
             }
         };
 
@@ -2327,6 +2561,16 @@
             
             // Reset idle timer
             resetIdleTimer();
+            
+            // Control halal logo visibility - show only on landing page
+            const halalLogo = document.querySelector('.halal-logo-fixed');
+            if (halalLogo) {
+                if (pageId === 'landing-page') {
+                    halalLogo.classList.add('show');
+                } else {
+                    halalLogo.classList.remove('show');
+                }
+            }
         }
 
         function updatePageTitle(pageId) {
@@ -2357,7 +2601,8 @@
             
             const langKey = currentLanguage === 'english' ? 'en' : 
                            currentLanguage === 'malay' ? 'ms' : 
-                           currentLanguage === 'mandarin' ? 'zh' : 'ta';
+                           currentLanguage === 'mandarin' ? 'zh' : 
+                           currentLanguage === 'tamil' ? 'ta' : 'en';
             
             return categoryNames[currentCategory] ? categoryNames[currentCategory][langKey] : t.shoppingCart;
         }
@@ -2370,8 +2615,8 @@
             
             // Show visual confirmation
             const langNames = {
-                'english': 'English',
-                'malay': 'Bahasa Malaysia', 
+                'english': 'ENGLISH',
+                'malay': 'BAHASA MALAYSIA', 
                 'mandarin': '中文',
                 'tamil': 'தமிழ்'
             };
@@ -2424,13 +2669,13 @@
                 
                 const eatInBtn = languagePage.querySelector('button[onclick*="eat-in"]');
                 if (eatInBtn) {
-                    eatInBtn.innerHTML = `🍽️ ${t.eatIn}`;
+                    eatInBtn.innerHTML = ` ${t.eatIn}`;
                     console.log('Updated eat in button to:', t.eatIn);
                 }
                 
                 const takeAwayBtn = languagePage.querySelector('button[onclick*="take-away"]');
                 if (takeAwayBtn) {
-                    takeAwayBtn.innerHTML = `🥡 ${t.takeAway}`;
+                    takeAwayBtn.innerHTML = ` ${t.takeAway}`;
                     console.log('Updated take away button to:', t.takeAway);
                 }
             }
@@ -2452,7 +2697,8 @@
                     if (category && categoryNames[category]) {
                         const langKey = currentLanguage === 'english' ? 'en' : 
                                        currentLanguage === 'malay' ? 'ms' : 
-                                       currentLanguage === 'mandarin' ? 'zh' : 'ta';
+                                       currentLanguage === 'mandarin' ? 'zh' : 
+                                       currentLanguage === 'tamil' ? 'ta' : 'en';
                         btn.textContent = categoryNames[category][langKey];
                     }
                 });
@@ -2502,6 +2748,53 @@
             return activePage ? activePage.id : 'landing-page';
         }
 
+        function updateFooterButtons(pageId) {
+            const t = translations[currentLanguage];
+            
+            // Update menu page buttons
+            if (pageId === 'menu-page') {
+                const backBtn = document.querySelector('#menu-page button[onclick*="language-page"]');
+                if (backBtn) backBtn.textContent = '← ' + t.back;
+                
+                const cartBtn = document.querySelector('#menu-page button[onclick*="cart-page"]');
+                if (cartBtn) {
+                    const cartCount = document.getElementById('cart-count');
+                    cartBtn.textContent = '🛒 ' + t.shoppingCart + ' (' + (cartCount ? cartCount.textContent : '0') + ')';
+                }
+            }
+            
+            // Update cart page buttons
+            if (pageId === 'cart-page') {
+                const backBtn = document.querySelector('#cart-page button[onclick*="menu-page"]');
+                if (backBtn) backBtn.textContent = '← ' + t.back;
+                
+                const payBtn = document.querySelector('#cart-page button[onclick*="payment-page"]');
+                if (payBtn) payBtn.textContent = '💳 ' + t.pay;
+            }
+            
+            // Update payment page buttons
+            if (pageId === 'payment-page') {
+                const backBtn = document.querySelector('#payment-page button[onclick*="cart-page"]');
+                if (backBtn) backBtn.textContent = '← ' + t.back;
+                
+                const payBtn = document.querySelector('#payment-page button[onclick*="processPayment"]');
+                if (payBtn) payBtn.textContent = '✅ ' + t.pay;
+                
+                // Update payment options
+                const paymentOptions = document.querySelectorAll('#payment-page .payment-option h4');
+                if (paymentOptions.length >= 4) {
+                    paymentOptions[0].textContent = t.creditDebitCard;
+                    paymentOptions[1].textContent = t.touchNGo;
+                    paymentOptions[2].textContent = t.qrCode;
+                    paymentOptions[3].textContent = t.cashAtCounter;
+                }
+                
+                // Update total label
+                const totalLabel = document.querySelector('#payment-page .summary-total span:first-child');
+                if (totalLabel) totalLabel.textContent = t.total + ':';
+            }
+        }
+
         function selectDining(preference) {
             diningPreference = preference;
             console.log('Selected dining preference:', preference);
@@ -2546,52 +2839,118 @@
 
         function getTranslatedItemName(name) {
             const itemTranslations = {
-                'Nasi Lemak': { en: 'Nasi Lemak', ms: 'Nasi Lemak', zh: '椰浆饭', ta: 'நாசி லெமாக்' },
-                'Nasi Goreng': { en: 'Nasi Goreng', ms: 'Nasi Goreng', zh: '炒饭', ta: 'நாசி கோரெங்' },
-                'Nasi Ayam': { en: 'Nasi Ayam', ms: 'Nasi Ayam', zh: '鸡饭', ta: 'நாசி அயாம்' },
-                'Laksa': { en: 'Laksa', ms: 'Laksa', zh: '叻沙', ta: 'லக்சா' },
-                'Char Kway Teow': { en: 'Char Kway Teow', ms: 'Char Kway Teow', zh: '炒粿条', ta: 'சார் குவே தியோ' },
+                // Rice Items
+                'Nasi Lemak Biasa': { en: 'Nasi Lemak Biasa', ms: 'Nasi Lemak Biasa', zh: '普通椰浆饭', ta: 'நாசி லெமாக் பியாசா' },
+                'Nasi Lemak Ayam Goreng': { en: 'Nasi Lemak Ayam Goreng', ms: 'Nasi Lemak Ayam Goreng', zh: '椰浆饭配炸鸡', ta: 'நாசி லெமாக் அயாம் கோரெங்' },
+                'Nasi Lemak Ayam Sambal': { en: 'Nasi Lemak Ayam Sambal', ms: 'Nasi Lemak Ayam Sambal', zh: '椰浆饭配叁巴鸡', ta: 'நாசி லெமாக் அயாம் சம்பல்' },
+                'Nasi Goreng Ali': { en: 'Nasi Goreng Ali', ms: 'Nasi Goreng Ali', zh: '阿里炒饭', ta: 'நாசி கோரெங் அலி' },
+                'Nasi Goreng Kampung': { en: 'Nasi Goreng Kampung', ms: 'Nasi Goreng Kampung', zh: '乡村炒饭', ta: 'நாசி கோரெங் கம்புங்' },
+                'Nasi Goreng Cina': { en: 'Nasi Goreng Cina', ms: 'Nasi Goreng Cina', zh: '中式炒饭', ta: 'நாடி கோரெங் சீனா' },
+                'Nasi Kunyit': { en: 'Nasi Kunyit', ms: 'Nasi Kunyit', zh: '黄姜饭', ta: 'நாசி குன்யிட்' },
+                'Hainan Chicken Rice': { en: 'Hainan Chicken Rice', ms: 'Nasi Ayam Hainan', zh: '海南鸡饭', ta: 'ஹைனான் கோழி அரிசி' },
+                'Hainan Chicken Chop': { en: 'Hainan Chicken Chop', ms: 'Chop Ayam Hainan', zh: '海南鸡扒', ta: 'ஹைனான் கோழி சாப்' },
+                'Chicken Porridge': { en: 'Chicken Porridge', ms: 'Bubur Ayam', zh: '鸡粥', ta: 'கோழி கஞ்சி' },
+                
+                // Noodle Items
+                'Ah Hock Ken Mee': { en: 'Ah Hock Ken Mee', ms: 'Ah Hock Ken Mee', zh: '亚福乾面', ta: 'ஆஹ் ஹாக் கென் மீ' },
+                'Assam Laksa': { en: 'Assam Laksa', ms: 'Assam Laksa', zh: '亚叁叻沙', ta: 'அசாம் லக்சா' },
+                'Bihun Goreng': { en: 'Bihun Goreng', ms: 'Bihun Goreng', zh: '炒米粉', ta: 'பிஹுன் கோரெங்' },
+                'Bihun Soto': { en: 'Bihun Soto', ms: 'Bihun Soto', zh: '索多米粉', ta: 'பிஹுன் சோட்டோ' },
+                'Cantonese Noodles': { en: 'Cantonese Noodles', ms: 'Mee Kantonis', zh: '广东面', ta: 'காண்டோனீஸ் நூடுல்ஸ்' },
+                'Kuey Teow': { en: 'Kuey Teow', ms: 'Kuey Teow', zh: '粿条', ta: 'குவே தியோ' },
                 'Mee Goreng': { en: 'Mee Goreng', ms: 'Mee Goreng', zh: '炒面', ta: 'மீ கோரெங்' },
+                'Mee Rebus': { en: 'Mee Rebus', ms: 'Mee Rebus', zh: '卤面', ta: 'மீ ரெபுஸ்' },
+                'Mee Soto': { en: 'Mee Soto', ms: 'Mee Soto', zh: '索多面', ta: 'மீ சோட்டோ' },
+                'Prawn Noodle': { en: 'Prawn Noodle', ms: 'Mee Udang', zh: '虾面', ta: 'இறால் நூடுல்' },
+                
+                // Side Items
+                'Ayam Crispy': { en: 'Ayam Crispy', ms: 'Ayam Crispy', zh: '脆皮鸡', ta: 'அயாம் க்ரிஸ்பி' },
                 'Spring Rolls': { en: 'Spring Rolls', ms: 'Lumpia', zh: '春卷', ta: 'ஸ்ப்ரிங் ரோல்ஸ்' },
                 'Satay': { en: 'Satay', ms: 'Satay', zh: '沙爹', ta: 'சடாய்' },
                 'Roti Canai': { en: 'Roti Canai', ms: 'Roti Canai', zh: '印度煎饼', ta: 'ரோட்டி கணை' },
-                'Teh Tarik': { en: 'Teh Tarik', ms: 'Teh Tarik', zh: '拉茶', ta: 'தே தாரிக்' },
-                'Kopi O': { en: 'Kopi O', ms: 'Kopi O', zh: '黑咖啡', ta: 'கோப்பி ஓ' },
+                'Ikan Goreng': { en: 'Fried Fish', ms: 'Ikan Goreng', zh: '炸鱼', ta: 'வறுத்த மீன்' },
+                'Sayur Goreng': { en: 'Fried Vegetables', ms: 'Sayur Goreng', zh: '炒蔬菜', ta: 'வறுத்த காய்கறிகள்' },
+                'Telur Goreng': { en: 'Fried Egg', ms: 'Telur Goreng', zh: '煎蛋', ta: 'வறுத்த முட்டை' },
+                'Sambal Goreng': { en: 'Stir-fried Sambal', ms: 'Sambal Goreng', zh: '炒叁巴', ta: 'வறுத்த சம்பல்' },
+                'Keropok Lekor': { en: 'Fish Crackers', ms: 'Keropok Lekor', zh: '鱼饼', ta: 'மீன் பிஸ்கட்' },
+                'Popiah': { en: 'Spring Roll', ms: 'Popiah', zh: '春卷', ta: 'ஸ்ப்ரிங் ரோல்' },
+                
+                // Drink Items
+                'Teh Tarik': { en: 'Pulled Tea', ms: 'Teh Tarik', zh: '拉茶', ta: 'தே தாரிக்' },
+                'Kopi O': { en: 'Black Coffee', ms: 'Kopi O', zh: '黑咖啡', ta: 'கோப்பி ஓ' },
                 'Fresh Juice': { en: 'Fresh Juice', ms: 'Jus Segar', zh: '鲜果汁', ta: 'புதிய சாறு' },
-                'Cendol': { en: 'Cendol', ms: 'Cendol', zh: '煎蕊', ta: 'செண்டோல்' },
-                'Ais Kacang': { en: 'Ais Kacang', ms: 'Ais Kacang', zh: '红豆冰', ta: 'ஐஸ் காசாங்' },
-                'Kuih Lapis': { en: 'Kuih Lapis', ms: 'Kuih Lapis', zh: '千层糕', ta: 'குய் லாபிஸ்' }
+                'Kopi Tarik': { en: 'Pulled Coffee', ms: 'Kopi Tarik', zh: '拉咖啡', ta: 'காபி தாரிக்' },
+                'Lime Juice': { en: 'Lime Juice', ms: 'Jus Limau', zh: '柠檬汁', ta: 'எலுமிச்சை சாறு' },
+                'Orange Juice': { en: 'Orange Juice', ms: 'Jus Oren', zh: '橙汁', ta: 'ஆரஞ்சு சாறு' },
+                'Milo': { en: 'Milo', ms: 'Milo', zh: '美禄', ta: 'மைலோ' },
+                'Bandung': { en: 'Bandung', ms: 'Bandung', zh: '玫瑰露', ta: 'பண்டுங்' },
+                'Air Kelapa': { en: 'Coconut Water', ms: 'Air Kelapa', zh: '椰子水', ta: 'தேங்காய் நீர்' },
+                'Teh O Ais': { en: 'Iced Tea', ms: 'Teh O Ais', zh: '冰茶', ta: 'பனி தேநீர்' }
             };
             
             const langKey = currentLanguage === 'english' ? 'en' : 
                            currentLanguage === 'malay' ? 'ms' : 
-                           currentLanguage === 'mandarin' ? 'zh' : 'ta';
+                           currentLanguage === 'mandarin' ? 'zh' : 
+                           currentLanguage === 'tamil' ? 'ta' : 'en';
             
             return itemTranslations[name] ? itemTranslations[name][langKey] : name;
         }
 
         function getTranslatedItemDescription(description) {
             const descTranslations = {
+                // Rice Items
                 'Traditional coconut rice with sambal': { en: 'Traditional coconut rice with sambal', ms: 'Nasi kelapa tradisional dengan sambal', zh: '传统椰浆饭配叁巴酱', ta: 'பாரம்பரிய தேங்காய் அரிசி சம்பலுடன்' },
-                'Fried rice with chicken and vegetables': { en: 'Fried rice with chicken and vegetables', ms: 'Nasi goreng dengan ayam dan sayuran', zh: '鸡肉蔬菜炒饭', ta: 'கோழி மற்றும் காய்கறிகளுடன் வறுத்த அரிசி' },
-                'Chicken rice with soup': { en: 'Chicken rice with soup', ms: 'Nasi ayam dengan sup', zh: '鸡饭配汤', ta: 'சூப்புடன் கோழி அரிசி' },
-                'Spicy coconut curry noodles': { en: 'Spicy coconut curry noodles', ms: 'Mee kari kelapa pedas', zh: '辣椰浆咖喱面', ta: 'காரமான தேங்காய் கறி நூடுல்ஸ்' },
-                'Stir-fried flat rice noodles': { en: 'Stir-fried flat rice noodles', ms: 'Kuey teow goreng', zh: '炒粿条', ta: 'வறுத்த தட்டையான அரிசி நூடுல்ஸ்' },
+                'Coconut rice with fried chicken': { en: 'Coconut rice with fried chicken', ms: 'Nasi kelapa dengan ayam goreng', zh: '椰浆饭配炸鸡', ta: 'வறுத்த கோழியுடன் தேங்காய் அரிசி' },
+                'Coconut rice with sambal chicken': { en: 'Coconut rice with sambal chicken', ms: 'Nasi kelapa dengan ayam sambal', zh: '椰浆饭配叁巴鸡', ta: 'சம்பல் கோழியுடன் தேங்காய் அரிசி' },
+                'Ali style fried rice': { en: 'Ali style fried rice', ms: 'Nasi goreng gaya Ali', zh: '阿里炒饭', ta: 'அலி பாணி வறுத்த அரிசி' },
+                'Village style fried rice': { en: 'Village style fried rice', ms: 'Nasi goreng gaya kampung', zh: '乡村炒饭', ta: 'கிராம பாணி வறுத்த அரிசி' },
+                'Chinese style fried rice': { en: 'Chinese style fried rice', ms: 'Nasi goreng gaya Cina', zh: '中式炒饭', ta: 'சீன பாணி வறுத்த அரிசி' },
+                'Hainan style chicken rice': { en: 'Hainan style chicken rice', ms: 'Nasi ayam gaya Hainan', zh: '海南鸡饭', ta: 'ஹைனான் பாணி கோழி அரிசி' },
+                'Hainan style chicken chop': { en: 'Hainan style chicken chop', ms: 'Chop ayam gaya Hainan', zh: '海南鸡扒', ta: 'ஹைனான் பாணி கோழி சாப்' },
+                'Turmeric rice': { en: 'Turmeric rice', ms: 'Nasi kunyit', zh: '黄姜饭', ta: 'மஞ்சள் அரிசி' },
+                'Chicken porridge with condiments': { en: 'Chicken porridge with condiments', ms: 'Bubur ayam dengan lauk', zh: '鸡粥配菜', ta: 'பக்க உணவுடன் கோழி கஞ்சி' },
+                
+                // Noodle Items
+                'Traditional dry noodles with pork and shrimp': { en: 'Traditional dry noodles with pork and shrimp', ms: 'Mee kering tradisional dengan daging babi dan udang', zh: '传统乾面配猪肉虾', ta: 'பன்றி இறாலுடன் பாரம்பரிய உலர் நூடுல்ஸ்' },
+                'Sour and spicy fish noodle soup': { en: 'Sour and spicy fish noodle soup', ms: 'Sup mee ikan masam dan pedas', zh: '酸辣鱼面汤', ta: 'புளிப்பு மற்றும் காரமான மீன் நூடுல் சூப்' },
+                'Stir-fried rice vermicelli with vegetables': { en: 'Stir-fried rice vermicelli with vegetables', ms: 'Bihun goreng dengan sayuran', zh: '炒米粉配蔬菜', ta: 'காய்கறிகளுடன் வறுத்த அரிசி வெர்மிசெல்லி' },
+                'Rice vermicelli in clear soup': { en: 'Rice vermicelli in clear soup', ms: 'Bihun dalam sup jernih', zh: '清汤米粉', ta: 'தெளிவான சூப்பில் அரிசி வெர்மிசெல்லி' },
+                'Traditional Cantonese style noodles': { en: 'Traditional Cantonese style noodles', ms: 'Mee gaya Kantonis tradisional', zh: '传统广东面', ta: 'பாரம்பரிய காண்டோனீஸ் பாணி நூடுல்ஸ்' },
+                'Flat rice noodles': { en: 'Flat rice noodles', ms: 'Kuey teow nasi', zh: '粿条', ta: 'தட்டையான அரிசி நூடுல்ஸ்' },
                 'Fried yellow noodles': { en: 'Fried yellow noodles', ms: 'Mee kuning goreng', zh: '炒黄面', ta: 'வறுத்த மஞ்சள் நூடுல்ஸ்' },
+                'Yellow noodles in gravy': { en: 'Yellow noodles in gravy', ms: 'Mee kuning dalam kuah', zh: '黄面配酱汁', ta: 'சாற்றில் மஞ்சள் நூடுல்ஸ்' },
+                'Indonesian style noodle soup': { en: 'Indonesian style noodle soup', ms: 'Sup mee gaya Indonesia', zh: '印尼式面汤', ta: 'இந்தோனேசிய பாணி நூடுல் சூப்' },
+                'Prawn noodles in dark sauce': { en: 'Prawn noodles in dark sauce', ms: 'Mee udang dalam sos gelap', zh: '虾面配黑酱', ta: 'இருண்ட சாஸில் இறால் நூடுல்ஸ்' },
+                
+                // Side Items
+                'Crispy fried chicken': { en: 'Crispy fried chicken', ms: 'Ayam goreng rangup', zh: '脆皮炸鸡', ta: 'மிருதுவான வறுத்த கோழி' },
                 'Crispy vegetable spring rolls': { en: 'Crispy vegetable spring rolls', ms: 'Lumpia sayuran rangup', zh: '脆皮蔬菜春卷', ta: 'மிருதுவான காய்கறி ஸ்ப்ரிங் ரோல்ஸ்' },
-                'Grilled chicken skewers': { en: 'Grilled chicken skewers', ms: 'Tusuk ayam panggang', zh: '烤鸡肉串', ta: 'வறுத்த கோழி குச்சிகள்' },
+                'Grilled chicken skewers': { en: 'Grilled chicken skewers', ms: 'Sate ayam panggang', zh: '烤鸡肉串', ta: 'வறுத்த கோழி குச்சிகள்' },
                 'Flaky flatbread with curry': { en: 'Flaky flatbread with curry', ms: 'Roti canai dengan kari', zh: '印度煎饼配咖喱', ta: 'கறியுடன் ரோட்டி கணை' },
+                'Fried fish with sambal': { en: 'Fried fish with sambal', ms: 'Ikan goreng dengan sambal', zh: '炸鱼配叁巴', ta: 'சம்பலுடன் வறுத்த மீன்' },
+                'Stir-fried vegetables with sambal': { en: 'Stir-fried vegetables with sambal', ms: 'Sayur goreng dengan sambal', zh: '炒蔬菜配叁巴', ta: 'சம்பலுடன் வறுத்த காய்கறிகள்' },
+                'Fried egg with sambal': { en: 'Fried egg with sambal', ms: 'Telur goreng dengan sambal', zh: '煎蛋配叁巴', ta: 'சம்பலுடன் வறுத்த முட்டை' },
+                'Stir-fried sambal': { en: 'Stir-fried sambal', ms: 'Sambal goreng', zh: '炒叁巴', ta: 'வறுத்த சம்பல்' },
+                'Fish crackers': { en: 'Fish crackers', ms: 'Keropok ikan', zh: '鱼饼', ta: 'மீன் பிஸ்கட்' },
+                'Fresh spring roll with vegetables and shrimp': { en: 'Fresh spring roll with vegetables and shrimp', ms: 'Popiah segar dengan sayuran dan udang', zh: '新鲜春卷配蔬菜虾', ta: 'காய்கறி மற்றும் இறாலுடன் புதிய ஸ்ப்ரிங் ரோல்' },
+                
+                // Drink Items
                 'Pulled tea with condensed milk': { en: 'Pulled tea with condensed milk', ms: 'Teh tarik dengan susu pekat', zh: '拉茶配炼乳', ta: 'ஒடுங்கிய பாலுடன் தே தாரிக்' },
                 'Black coffee': { en: 'Black coffee', ms: 'Kopi hitam', zh: '黑咖啡', ta: 'கருப்பு காபி' },
                 'Fresh fruit juice': { en: 'Fresh fruit juice', ms: 'Jus buah segar', zh: '新鲜果汁', ta: 'புதிய பழ சாறு' },
-                'Iced dessert with coconut milk': { en: 'Iced dessert with coconut milk', ms: 'Pencuci mulut ais dengan santan', zh: '椰浆冰甜品', ta: 'தேங்காய் பாலுடன் பனி இனிப்பு' },
-                'Shaved ice with red beans': { en: 'Shaved ice with red beans', ms: 'Ais kacang dengan kacang merah', zh: '红豆刨冰', ta: 'சிவப்பு பீன்ஸுடன் ஐஸ் காசாங்' },
-                'Layered traditional cake': { en: 'Layered traditional cake', ms: 'Kuih lapis tradisional', zh: '传统千层糕', ta: 'பாரம்பரிய அடுக்கு கேக்' }
+                'Pulled coffee with milk': { en: 'Pulled coffee with milk', ms: 'Kopi tarik dengan susu', zh: '拉咖啡配牛奶', ta: 'பாலுடன் காபி தாரிக்' },
+                'Fresh lime juice with ice': { en: 'Fresh lime juice with ice', ms: 'Jus limau segar dengan ais', zh: '新鲜柠檬汁配冰', ta: 'பனியுடன் புதிய எலுமிச்சை சாறு' },
+                'Fresh orange juice with ice': { en: 'Fresh orange juice with ice', ms: 'Jus oren segar dengan ais', zh: '新鲜橙汁配冰', ta: 'பனியுடன் புதிய ஆரஞ்சு சாறு' },
+                'Chocolate malt drink with milk': { en: 'Chocolate malt drink with milk', ms: 'Minuman malt coklat dengan susu', zh: '巧克力麦芽饮料配牛奶', ta: 'பாலுடன் சாக்லேட் மால்ட் பானம்' },
+                'Rose syrup drink with milk': { en: 'Rose syrup drink with milk', ms: 'Minuman sirap ros dengan susu', zh: '玫瑰糖浆饮料配牛奶', ta: 'பாலுடன் ரோஸ் சிரப் பானம்' },
+                'Fresh coconut water': { en: 'Fresh coconut water', ms: 'Air kelapa segar', zh: '新鲜椰子水', ta: 'புதிய தேங்காய் நீர்' },
+                'Iced tea without milk': { en: 'Iced tea without milk', ms: 'Teh ais tanpa susu', zh: '冰茶不加奶', ta: 'பால் இல்லாமல் பனி தேநீர்' }
             };
             
             const langKey = currentLanguage === 'english' ? 'en' : 
                            currentLanguage === 'malay' ? 'ms' : 
-                           currentLanguage === 'mandarin' ? 'zh' : 'ta';
+                           currentLanguage === 'mandarin' ? 'zh' : 
+                           currentLanguage === 'tamil' ? 'ta' : 'en';
             
             return descTranslations[description] ? descTranslations[description][langKey] : description;
         }
@@ -2599,52 +2958,52 @@
         function getMenuItems(category) {
             const menuData = {
                 rice: [
-                    { id: 1, name: 'Nasi Lemak Biasa', price: 8.50, image: 'MENU IMAGES/RICE/Nasi Lemak Biasa.png', description: 'Traditional coconut rice with sambal' },
-                    { id: 2, name: 'Nasi Lemak Ayam Goreng', price: 9.50, image: 'MENU IMAGES/RICE/Nasi Lemak Ayam Goreng.png', description: 'Coconut rice with fried chicken' },
-                    { id: 3, name: 'Nasi Lemak Ayam Sambal', price: 9.00, image: 'MENU IMAGES/RICE/Nasi Lemak Ayam Sambal.png', description: 'Coconut rice with sambal chicken' },
-                    { id: 4, name: 'Nasi Goreng Ali', price: 7.00, image: 'MENU IMAGES/RICE/Nasi Goreng Ali.png', description: 'Special fried rice by Ali' },
-                    { id: 5, name: 'Nasi Goreng Kampung', price: 7.50, image: 'MENU IMAGES/RICE/Nasi Goreng Kampung.png', description: 'Village style fried rice' },
-                    { id: 6, name: 'Nadi Goreng Cina', price: 8.00, image: 'MENU IMAGES/RICE/Nadi Goreng Cina.png', description: 'Chinese style fried rice' },
-                    { id: 7, name: 'Hainanese Chicken Rice', price: 10.50, image: 'MENU IMAGES/RICE/Hainanese Chicken Rice.png', description: 'Traditional Hainanese chicken rice' },
-                    { id: 8, name: 'Hainan Chicken Chop', price: 12.00, image: 'MENU IMAGES/RICE/Hainan Chicken Chop.png', description: 'Hainan style chicken chop' },
-                    { id: 9, name: 'Nasi Kunyit', price: 8.20, image: 'MENU IMAGES/RICE/Nasi Kunyit.png', description: 'Turmeric rice with curry' },
-                    { id: 10, name: 'Chicken Porridge', price: 6.50, image: 'MENU IMAGES/RICE/Chicken Porridge.png', description: 'Warm chicken porridge' }
+                    { id: 1, name: 'Nasi Lemak Biasa', price: 8.50, image: 'Nasi Lemak Biasa.png', description: 'Traditional coconut rice with sambal' },
+                    { id: 2, name: 'Nasi Lemak Ayam Goreng', price: 9.50, image: 'Nasi Lemak Ayam Goreng.png', description: 'Coconut rice with fried chicken' },
+                    { id: 3, name: 'Nasi Lemak Ayam Sambal', price: 9.00, image: 'Nasi Lemak Ayam Sambal.png', description: 'Coconut rice with sambal chicken' },
+                    { id: 4, name: 'Nasi Goreng Ali', price: 7.00, image: 'Nasi Goreng Ali.png', description: 'Ali style fried rice' },
+                    { id: 5, name: 'Nasi Goreng Kampung', price: 7.50, image: 'Nasi Goreng Kampung.png', description: 'Village style fried rice' },
+                    { id: 6, name: 'Nasi Goreng Cina', price: 8.00, image: 'Nasi Goreng Cina.png', description: 'Chinese style fried rice' },
+                    { id: 7, name: 'Hainanese Chicken Rice', price: 10.50, image: 'Hainanese Chicken Rice.png', description: 'Hainan style chicken rice' },
+                    { id: 8, name: 'Hainan Chicken Chop', price: 12.00, image: 'Hainan Chicken Chop.png', description: 'Hainan style chicken chop' },
+                    { id: 9, name: 'Nasi Kunyit', price: 8.20, image: 'Nasi Kunyit.png', description: 'Turmeric rice' },
+                    { id: 10, name: 'Chicken Porridge', price: 6.50, image: 'Chicken Porridge.png', description: 'Chicken porridge with condiments' }
                 ],
                 noodles: [
-                    { id: 11, name: 'Ah Hock Ken Mee', price: 10.00, image: 'MENU IMAGES/NOODLES/Ah Hock Ken Mee.png', description: 'Special Ken Mee by Ah Hock' },
-                    { id: 12, name: 'Assam Laksa', price: 9.50, image: 'MENU IMAGES/NOODLES/Assam Laksa.png', description: 'Sour and spicy fish noodle soup' },
-                    { id: 13, name: 'Bihun Goreng', price: 7.50, image: 'MENU IMAGES/NOODLES/Bihun Goreng.png', description: 'Fried rice vermicelli' },
-                    { id: 14, name: 'Bihun Soto', price: 8.50, image: 'MENU IMAGES/NOODLES/Bihun Soto.png', description: 'Rice vermicelli in clear soup' },
-                    { id: 15, name: 'Cantonese Noodles', price: 8.00, image: 'MENU IMAGES/NOODLES/Cantonese Noodles.png', description: 'Traditional Cantonese style noodles' },
-                    { id: 16, name: 'Kuey Teow', price: 7.00, image: 'MENU IMAGES/NOODLES/Kuey Teow.png', description: 'Flat rice noodles' },
-                    { id: 17, name: 'Mee Goreng', price: 7.50, image: 'MENU IMAGES/NOODLES/Mee Goreng.png', description: 'Fried yellow noodles' },
-                    { id: 18, name: 'Mee Rebus', price: 8.50, image: 'MENU IMAGES/NOODLES/Mee Rebus.png', description: 'Boiled noodles in rich gravy' },
-                    { id: 19, name: 'Mee Soto', price: 8.80, image: 'MENU IMAGES/NOODLES/Mee Soto.png', description: 'Indonesian style noodle soup' },
-                    { id: 20, name: 'Prawn Noodle', price: 9.50, image: 'MENU IMAGES/NOODLES/Prawn noodle.png', description: 'Prawn noodles in dark sauce' }
+                    { id: 11, name: 'Ah Hock Ken Mee', price: 10.00, image: 'Ah Hock Ken Mee.png', description: 'Traditional dry noodles with pork and shrimp' },
+                    { id: 12, name: 'Assam Laksa', price: 9.50, image: 'Assam Laksa.png', description: 'Sour and spicy fish noodle soup' },
+                    { id: 13, name: 'Bihun Goreng', price: 7.50, image: 'Bihun Goreng.png', description: 'Stir-fried rice vermicelli with vegetables'},
+                    { id: 14, name: 'Bihun Soto', price: 8.50, image: 'Bihun Soto.png', description: 'Rice vermicelli in clear soup'},
+                    { id: 15, name: 'Cantonese Noodles', price: 8.00, image: 'Cantonese Noodles.png', description: 'Traditional Cantonese style noodles' },
+                    { id: 16, name: 'Kuey Teow', price: 7.00, image: 'Kuey Teow.png', description: 'Flat rice noodles' },
+                    { id: 17, name: 'Mee Goreng', price: 7.50, image: 'Mee Goreng.png', description: 'Fried yellow noodles' },
+                    { id: 18, name: 'Mee Rebus', price: 8.50, image: 'Mee Rebus.png', description: 'Yellow noodles in gravy' },
+                    { id: 19, name: 'Mee Soto', price: 8.80, image: 'Mee Soto.png', description: 'Indonesian style noodle soup' },
+                    { id: 20, name: 'Prawn Noodle', price: 9.50, image: 'Prawn noodle.png', description: 'Prawn noodles in dark sauce' }
                 ],
                 sides: [
-                    { id: 21, name: 'Ayam Crispy', price: 5.50, image: 'MENU IMAGES/SIDES/Ayam Crispy.png', description: 'Crispy fried chicken' },
+                    { id: 21, name: 'Ayam Crispy', price: 5.50, image: 'Ayam Crispy.png', description: 'Crispy fried chicken' },
                     { id: 22, name: 'Spring Rolls', price: 4.00, image: 'doodle1.png', description: 'Crispy vegetable spring rolls' },
                     { id: 23, name: 'Satay', price: 6.00, image: 'doodle2.png', description: 'Grilled chicken skewers' },
                     { id: 24, name: 'Roti Canai', price: 3.50, image: 'doodle3.png', description: 'Flaky flatbread with curry' },
                     { id: 25, name: 'Ikan Goreng', price: 6.50, image: 'doodle1.png', description: 'Fried fish with sambal' },
-                    { id: 26, name: 'Sayur Goreng', price: 3.00, image: 'doodle2.png', description: 'Stir-fried mixed vegetables' },
-                    { id: 27, name: 'Telur Goreng', price: 2.50, image: 'doodle3.png', description: 'Fried egg with soy sauce' },
-                    { id: 28, name: 'Sambal Goreng', price: 4.50, image: 'doodle1.png', description: 'Spicy fried tempeh and tofu' },
-                    { id: 29, name: 'Keropok Lekor', price: 3.50, image: 'doodle2.png', description: 'Fish crackers with chili sauce' },
-                    { id: 30, name: 'Popiah', price: 4.80, image: 'doodle3.png', description: 'Fresh spring rolls with vegetables' }
+                    { id: 26, name: 'Sayur Goreng', price: 3.00, image: 'doodle2.png', description: 'Stir-fried vegetables with sambal' },
+                    { id: 27, name: 'Telur Goreng', price: 2.50, image: 'doodle3.png', description: 'Fried egg with sambal' },
+                    { id: 28, name: 'Sambal Goreng', price: 4.50, image: 'doodle1.png', description: 'Stir-fried sambal' },
+                    { id: 29, name: 'Keropok Lekor', price: 3.50, image: 'doodle2.png', description: 'Fish crackers' },
+                    { id: 30, name: 'Popiah', price: 4.80, image: 'doodle3.png', description: 'Fresh spring roll with vegetables and shrimp' }
                 ],
                 drinks: [
                     { id: 31, name: 'Teh Tarik', price: 3.00, image: 'doodle1.png', description: 'Pulled tea with condensed milk' },
                     { id: 32, name: 'Kopi O', price: 2.50, image: 'doodle2.png', description: 'Black coffee' },
                     { id: 33, name: 'Fresh Juice', price: 4.50, image: 'doodle3.png', description: 'Fresh fruit juice' },
                     { id: 34, name: 'Kopi Tarik', price: 3.50, image: 'doodle1.png', description: 'Pulled coffee with milk' },
-                    { id: 35, name: 'Lime Juice', price: 3.80, image: 'doodle2.png', description: 'Fresh lime with ice' },
-                    { id: 36, name: 'Orange Juice', price: 4.00, image: 'doodle3.png', description: 'Fresh orange juice' },
-                    { id: 37, name: 'Milo', price: 3.20, image: 'doodle1.png', description: 'Chocolate malt drink' },
-                    { id: 38, name: 'Bandung', price: 3.50, image: 'doodle2.png', description: 'Rose syrup with milk' },
+                    { id: 35, name: 'Lime Juice', price: 3.80, image: 'doodle2.png', description: 'Fresh lime juice with ice' },
+                    { id: 36, name: 'Orange Juice', price: 4.00, image: 'doodle3.png', description: 'Fresh orange juice with ice' },
+                    { id: 37, name: 'Milo', price: 3.20, image: 'doodle1.png', description: 'Chocolate malt drink with milk' },
+                    { id: 38, name: 'Bandung', price: 3.50, image: 'doodle2.png', description: 'Rose syrup drink with milk' },
                     { id: 39, name: 'Air Kelapa', price: 4.00, image: 'doodle3.png', description: 'Fresh coconut water' },
-                    { id: 40, name: 'Teh O Ais', price: 2.80, image: 'doodle1.png', description: 'Iced tea without milk' }
+                    { id: 40, name: 'Teh O Ais', price: 2.80, image: 'doodle1.png', description: 'Iced tea without milk'}
                 ],
             };
             return menuData[category] || [];
@@ -2671,19 +3030,15 @@
             updateCartCount();
         }
 
+        
+
         function updateCartDisplay() {
             const cartItems = document.getElementById('cart-items');
             const totalAmount = document.getElementById('total-amount');
             const t = translations[currentLanguage];
             
             if (cart.length === 0) {
-                const emptyMessages = {
-                    english: 'Your cart is empty',
-                    malay: 'Troli anda kosong',
-                    mandarin: '您的购物车是空的',
-                    tamil: 'உங்கள் கார்ட் காலியாக உள்ளது'
-                };
-                cartItems.innerHTML = `<p style="text-align: center; color: #666; font-size: 18px;">${emptyMessages[currentLanguage]}</p>`;
+                cartItems.innerHTML = `<p style="text-align: center; color: #666; font-size: 18px;">${t.cartEmpty}</p>`;
                 totalAmount.textContent = 'RM 0.00';
             } else {
                 cartItems.innerHTML = cart.map(item => `
@@ -2858,6 +3213,33 @@
             setInterval(nextPromoSlide, 4000); // Change slide every 4 seconds
         }
 
+        // Boundary-based scroll highlighting
+        function handleScrollBoundaryHighlight() {
+            const menuContent = document.querySelector('.menu-content');
+            const topHighlight = menuContent?.querySelector('.scroll-top-highlight');
+            const bottomHighlight = menuContent?.querySelector('.scroll-bottom-highlight');
+            
+            if (!menuContent || !topHighlight || !bottomHighlight) return;
+
+            const scrollTop = menuContent.scrollTop;
+            const scrollHeight = menuContent.scrollHeight;
+            const clientHeight = menuContent.clientHeight;
+            
+            // Check if at the very top (within 5px)
+            if (scrollTop <= 5) {
+                topHighlight.classList.add('show');
+            } else {
+                topHighlight.classList.remove('show');
+            }
+            
+            // Check if at the very bottom (within 5px)
+            if (scrollTop >= scrollHeight - clientHeight - 5) {
+                bottomHighlight.classList.add('show');
+            } else {
+                bottomHighlight.classList.remove('show');
+            }
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Ensure landing page is active on load
@@ -2871,11 +3253,17 @@
             document.addEventListener('mousemove', resetIdleTimer);
             document.addEventListener('keypress', resetIdleTimer);
             
+            // Add scroll event listeners for boundary highlighting
+            const menuContent = document.querySelector('.menu-content');
+            if (menuContent) {
+                menuContent.addEventListener('scroll', handleScrollBoundaryHighlight);
+            }
+            
             // Start the timer
             resetIdleTimer();
             
             console.log('🎉 Complete Amakiosk Loaded Successfully!');
-            console.log('Features: Full kiosk flow, multi-language support, shopping cart, payment system, promotional slider');
+            console.log('Features: Full kiosk flow, multi-language support, shopping cart, payment system, promotional slider, boundary scroll highlighting');
             console.log('Current active page:', document.querySelector('.page.active')?.id);
             console.log('Header element:', document.querySelector('.header'));
         });
