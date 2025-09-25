@@ -26,7 +26,7 @@
     
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ccc3b5, #d1a35f);
+            background: linear-gradient(135deg, #cca280, #cca280);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
             height: 100vh;
@@ -50,27 +50,38 @@
             height: 100px;
             background: url('wood.png') repeat-x;
             background-size: auto 100%;
-            background-color: #8B4513;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 100;
-            max-width: 600px;
-            width: 90%;
+            max-width: 400px;
+            width: 60%;
             margin: 0 auto;
             border-radius: 20px;
             margin-top: 20px;
         }
         
         .header-logo {
-            background: white;
-            border-radius: 8px;
-            padding: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
             margin-right: 15px;
+        }
+        
+        /* Background color for specific pages */
+        #menu-page {
+            background-color: #cca280;
+        }
+        
+        #cart-page {
+            background-color: #cca280;
+        }
+        
+        #payment-page {
+            background-color: #cca280;
         }
 
         .header.landing-header {
@@ -113,7 +124,7 @@
         }
         
         .logo {
-            height: 20px;
+            height: 40px;
             width: 40px;
         }
         
@@ -449,7 +460,7 @@
         .promo-video {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            background: linear-gradient(135deg, #f080dd, #f080dd);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -490,11 +501,11 @@
         }
         
         .promo-banner:nth-child(2) {
-            background: linear-gradient(135deg, #4ecdc4, #6dd5ed);
+            background: linear-gradient(135deg, #cca280, #cca280);
         }
         
         .promo-banner:nth-child(3) {
-            background: linear-gradient(135deg, #45b7d1, #96c93d);
+            background: linear-gradient(135deg, #cca280, #cca280);
         }
         
         .promo-content {
@@ -651,30 +662,33 @@
             }
             
             .menu-sidebar {
-                width: 200px;
-                padding: 20px 15px;
+                width: 200px; /* Same width maintained */
+                padding: 40px 15px; /* Consistent with base styles */
                 display: flex;
                 flex-direction: column;
-                gap: 15px;
-                justify-content: center;
+                justify-content: space-evenly; /* Equal spacing with gaps */
                 align-items: stretch;
                 max-height: none;
-                background: linear-gradient(180deg, #f5f5f5, #e8e8e8);
-                border-radius: 0 15px 15px 0;
-                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+                background: transparent; /* Remove container background */
+                border-radius: 0; /* Remove container border radius */
+                box-shadow: none; /* Remove container shadow */
             }
             
             .category-btn {
-                flex: none;
+                flex: 0 0 auto; /* Maintain button size */
                 width: 100%;
                 min-width: 0;
-                padding: 18px 12px;
-                font-size: 16px;
+                padding: 45px 15px; /* Increased for landscape mode */
+                font-size: 28px; /* Larger font for landscape */
                 margin: 0;
-                min-height: 60px;
-                border-radius: 12px;
-                font-weight: 600;
+                min-height: 110px; /* Larger minimum height */
+                border-radius: 15px;
+                font-weight: 700;
                 text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             }
             
             .menu-content {
@@ -764,7 +778,20 @@
             
             .menu-sidebar {
                 width: 180px;
-                padding: 25px 15px;
+                padding: 30px 15px; /* Increased padding for better spacing */
+                justify-content: space-evenly; /* Equal spacing with gaps */
+            }
+            
+            .category-btn {
+                padding: 25px 15px; /* Increased padding for tablet */
+                font-size: 20px; /* Increased font size for tablet */
+                min-height: 70px; /* Increased minimum height */
+                border-radius: 12px;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             }
         }
         
@@ -1246,10 +1273,16 @@
             .category-btn {
                 width: auto;
                 min-width: 120px;
-                padding: 12px 18px;
-                font-size: 14px;
+                padding: 15px 20px; /* Increased padding for portrait mode */
+                font-size: 16px; /* Increased font size for portrait mode */
                 margin: 3px;
-                min-height: 45px;
+                min-height: 50px; /* Increased minimum height */
+                border-radius: 12px;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
             }
             
             .menu-content {
@@ -1738,40 +1771,54 @@
         .menu-container {
             flex: 1;
             display: flex;
-            background: linear-gradient(135deg, #ddcbbd, #ddbcad);
+            background: linear-gradient(135deg, #cca280, #cca280);
         }
         
         .menu-sidebar {
-            width: 200px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px 20px;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px; /* Same width as requested */
+            background: transparent; /* Remove container background */
+            padding: 40px 15px; /* Increased top/bottom padding for better spacing */
+            box-shadow: none; /* Remove container shadow */
             margin-top: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 140px);
+            justify-content: space-evenly; /* Equal spacing with gaps between buttons */
+            align-items: stretch; /* Changed from center to stretch for full width buttons */
+            height: calc(100vh - 140px); /* Full height container */
+            border-radius: 0; /* Remove container border radius */
         }
         
         .category-btn {
+            flex: 0 0 auto; /* Don't grow/shrink, maintain size */
             width: 100%;
-            padding: 20px 15px;
-            margin: 6px 0;
+            padding: 30px 15px; /* Increased padding for bigger buttons */
+            margin: 0; /* Remove margins, let justify-content handle spacing */
             background: url('wood.png') repeat;
             background-size: 200px 100%;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 20px;
-            font-weight: bold;
+            border-radius: 15px; /* More rounded corners */
+            font-size: 22px; /* Increased font size */
+            font-weight: 700; /* Bolder font */
             cursor: pointer;
             transition: all 0.3s ease;
+            min-height: 80px; /* Minimum height for touch-friendly buttons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
         
-        .category-btn:hover, .category-btn.active {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        .category-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border: 2px solid #654321;
         }
         
         .menu-content {
@@ -2474,12 +2521,12 @@
     <div class="container">
         <!-- Header (always visible) -->
         <div class="header">
-            <div class="header-logo" id="header-logo" style="display: none;">
-                <img src="logo old.png" alt="Logo" style="width: 40px; height: 40px; object-fit: contain;">
-            </div>
             <div class="page-title" id="page-title" style="flex: 1; text-align: center; color: white; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
                 <!-- Page title will be updated by JavaScript -->
             </div>
+        </div>
+        <div class="header-logo" id="header-logo" style="display: none; position: absolute; top: 20px; left: 20px; z-index: 101;">
+            <img src="logo old.png" alt="Logo" style="width: 120px; height: 120px; object-fit: contain;">
         </div>
 
         <!-- Landing Page -->
@@ -2752,10 +2799,6 @@
                     </div>
                 </div>
                 <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    <div id="order-summary-items">
-                        <!-- Order summary will be populated by JavaScript -->
-                    </div>
                     <div class="summary-total">
                         <span>Total:</span>
                         <span id="payment-total">RM 0.00</span>
@@ -2826,7 +2869,6 @@
                 Cart: 'Cart',
                 totalAmount: 'TOTAL AMOUNT',
                 paymentMethod: 'PAYMENT METHOD',
-                orderSummary: 'ORDER SUMMARY',
                 orderConfirmed: 'ORDER CONFIRMED',
                 thankYou: 'THANK YOU FOR YOUR ORDER!',
                 returningToMain: 'RETURNING TO MAIN PAGE IN',
@@ -2867,7 +2909,6 @@
                 Cart: 'TROLI',
                 totalAmount: 'JUMLAH KESELURUHAN',
                 paymentMethod: 'KAEDAH PEMBAYARAN',
-                orderSummary: 'RINGKASAN PESANAN',
                 orderConfirmed: 'PESANAN DISAHKAN!',
                 thankYou: 'TERIMA KASIH ATAS PESANAN ANDA!',
                 returningToMain: 'KEMBALI KE HALAMAN UTAMA DALAM',
@@ -2908,7 +2949,6 @@
                 Cart: '购物车',
                 totalAmount: '总金额',
                 paymentMethod: '付款方式',
-                orderSummary: '订单摘要',
                 orderConfirmed: '订单确认！',
                 thankYou: '感谢您的订单！',
                 returningToMain: '返回主页面',
@@ -2948,8 +2988,6 @@
                 takeAway: 'எடுத்துச் செல்',
                 Cart: 'கடை வண்டி',
                 totalAmount: 'மொத்த தொகை',
-                paymentMethod: 'பணம் செலுத்தும் முறை',
-                orderSummary: 'ஆர்டர் சுருக்கம்',
                 orderConfirmed: 'ஆர்டர் உறுதிப்படுத்தப்பட்டது!',
                 thankYou: 'உங்கள் ஆர்டருக்கு நன்றி!',
                 returningToMain: 'முதன்மை பக்கத்திற்கு திரும்புகிறது',
@@ -3055,11 +3093,10 @@
         function getMenuPageTitle() {
             const t = translations[currentLanguage];
             const categoryNames = {
-                rice: { en: 'Rice Menu', ms: 'Menu Nasi', zh: '米饭菜单', ta: 'அரிசி மெனு' },
-                noodles: { en: 'Noodles Menu', ms: 'Menu Mee', zh: '面条菜单', ta: 'நூடுல்ஸ் மெனு' },
-                sides: { en: 'Sides Menu', ms: 'Menu Hidangan Sampingan', zh: '配菜菜单', ta: 'பக்க உணவு மெனு' },
-                drinks: { en: 'Drinks Menu', ms: 'Menu Minuman', zh: '饮料菜单', ta: 'பானங்கள் மெனு' },
-                desserts: { en: 'Desserts Menu', ms: 'Menu Pencuci Mulut', zh: '甜点菜单', ta: 'இனிப்பு மெனு' }
+                rice: { en: 'RICE MENU', ms: 'MENU NASI', zh: '米饭菜单', ta: 'அரிசி மெனு' },
+                noodles: { en: 'NOODLES MENU', ms: 'MENU MEE', zh: '面条菜单', ta: 'நூடுல்ஸ் மெனு' },
+                sides: { en: 'SIDES MENU', ms: 'MENU HIDANGAN SAMPINGAN', zh: '配菜菜单', ta: 'பக்க உணவு மெனு' },
+                drinks: { en: 'DRINKS MENU', ms: 'MENU MINUMAN', zh: '饮料菜单', ta: 'பானங்கள் மெனு' },
             };
             
             const langKey = currentLanguage === 'english' ? 'en' : 
@@ -3099,15 +3136,7 @@
             // Update page title
             updatePageTitle(getCurrentPageId());
             
-            // Force update current page content
-            const currentPage = getCurrentPageId();
-            if (currentPage === 'menu-page') {
-                loadMenuItems();
-            } else if (currentPage === 'cart-page') {
-                updateCartDisplay();
-            } else if (currentPage === 'payment-page') {
-                updateOrderSummary();
-            }
+
         }
 
         function updateAllLanguageText() {
@@ -3177,15 +3206,6 @@
                 if (totalTitle) totalTitle.textContent = t.totalAmount;
             }
             
-            // Update payment page
-            const paymentPage = document.getElementById('payment-page');
-            if (paymentPage) {
-                const paymentTitle = paymentPage.querySelector('h2');
-                if (paymentTitle) paymentTitle.textContent = t.paymentMethod;
-                
-                const summaryTitle = paymentPage.querySelector('h3');
-                if (summaryTitle) summaryTitle.textContent = t.orderSummary;
-            }
             
             // Update confirmation page
             const confirmationPage = document.getElementById('confirmation-page');
@@ -3288,14 +3308,10 @@
             const t = translations[currentLanguage];
             
             menuGrid.innerHTML = items.map(item => `
-                <div class="menu-item">
+                <div class="menu-item" onclick="addToCart(${item.id})" style="cursor: pointer;">
                     <img src="${item.image}" alt="${item.name}">
                     <h3>${getTranslatedItemName(item.name)}</h3>
-                    <p>${getTranslatedItemDescription(item.description)}</p>
                     <div class="price">RM ${item.price.toFixed(2)}</div>
-                    <button class="add-to-cart-btn" onclick="addToCart(${item.id})">
-                        ${t.addToCart}
-                    </button>
                 </div>
             `).join('');
         }
@@ -3303,13 +3319,13 @@
         function getTranslatedItemName(name) {
             const itemTranslations = {
                 // Rice Items
-                'Nasi Lemak Biasa': { en: 'Nasi Lemak Biasa', ms: 'Nasi Lemak Biasa', zh: '普通椰浆饭', ta: 'நாசி லெமாக் பியாசா' },
-                'Nasi Lemak Ayam Goreng': { en: 'Nasi Lemak Ayam Goreng', ms: 'Nasi Lemak Ayam Goreng', zh: '椰浆饭配炸鸡', ta: 'நாசி லெமாக் அயாம் கோரெங்' },
-                'Nasi Lemak Ayam Sambal': { en: 'Nasi Lemak Ayam Sambal', ms: 'Nasi Lemak Ayam Sambal', zh: '椰浆饭配叁巴鸡', ta: 'நாசி லெமாக் அயாம் சம்பல்' },
-                'Nasi Goreng Ali': { en: 'Nasi Goreng Ali', ms: 'Nasi Goreng Ali', zh: '阿里炒饭', ta: 'நாசி கோரெங் அலி' },
-                'Nasi Goreng Kampung': { en: 'Nasi Goreng Kampung', ms: 'Nasi Goreng Kampung', zh: '乡村炒饭', ta: 'நாசி கோரெங் கம்புங்' },
-                'Nasi Goreng Cina': { en: 'Nasi Goreng Cina', ms: 'Nasi Goreng Cina', zh: '中式炒饭', ta: 'நாடி கோரெங் சீனா' },
-                'Nasi Kunyit': { en: 'Nasi Kunyit', ms: 'Nasi Kunyit', zh: '黄姜饭', ta: 'நாசி குன்யிட்' },
+                'Nasi Lemak Biasa': { en: 'Basic Nasi Lemak', ms: 'Nasi Lemak Biasa', zh: '普通椰浆饭', ta: 'நாசி லெமாக் பியாசா' },
+                'Nasi Lemak Ayam Goreng': { en: 'Nasi Lemak with Fried Chicken', ms: 'Nasi Lemak Ayam Goreng', zh: '椰浆饭配炸鸡', ta: 'நாசி லெமாக் அயாம் கோரெங்' },
+                'Nasi Lemak Ayam Sambal': { en: 'Nasi Lemak with Sambal Chicken', ms: 'Nasi Lemak Ayam Sambal', zh: '椰浆饭配叁巴鸡', ta: 'நாசி லெமாக் அயாம் சம்பல்' },
+                'Nasi Goreng Ali': { en: 'Ali Style Fried Rice', ms: 'Nasi Goreng Ali', zh: '阿里炒饭', ta: 'நாசி கோரெங் அலி' },
+                'Nasi Goreng Kampung': { en: 'Fried Rice from Kampung', ms: 'Nasi Goreng Kampung', zh: '乡村炒饭', ta: 'நாசி கோரெங் கம்புங்' },
+                'Nasi Goreng Cina': { en: ' Chicken Fried Rice ', ms: 'Nasi Goreng Cina', zh: '中式炒饭', ta: 'நாடி கோரெங் சீனா' },
+                'Nasi Kunyit': { en: 'Turmeric Rice', ms: 'Nasi Kunyit', zh: '黄姜饭', ta: 'நாசி குன்யிட்' },
                 'Hainan Chicken Rice': { en: 'Hainan Chicken Rice', ms: 'Nasi Ayam Hainan', zh: '海南鸡饭', ta: 'ஹைனான் கோழி அரிசி' },
                 'Hainan Chicken Chop': { en: 'Hainan Chicken Chop', ms: 'Chop Ayam Hainan', zh: '海南鸡扒', ta: 'ஹைனான் கோழி சாப்' },
                 'Chicken Porridge': { en: 'Chicken Porridge', ms: 'Bubur Ayam', zh: '鸡粥', ta: 'கோழி கஞ்சி' },
@@ -3321,9 +3337,9 @@
                 'Bihun Soto': { en: 'Bihun Soto', ms: 'Bihun Soto', zh: '索多米粉', ta: 'பிஹுன் சோட்டோ' },
                 'Cantonese Noodles': { en: 'Cantonese Noodles', ms: 'Mee Kantonis', zh: '广东面', ta: 'காண்டோனீஸ் நூடுல்ஸ்' },
                 'Kuey Teow': { en: 'Kuey Teow', ms: 'Kuey Teow', zh: '粿条', ta: 'குவே தியோ' },
-                'Mee Goreng': { en: 'Mee Goreng', ms: 'Mee Goreng', zh: '炒面', ta: 'மீ கோரெங்' },
-                'Mee Rebus': { en: 'Mee Rebus', ms: 'Mee Rebus', zh: '卤面', ta: 'மீ ரெபுஸ்' },
-                'Mee Soto': { en: 'Mee Soto', ms: 'Mee Soto', zh: '索多面', ta: 'மீ சோட்டோ' },
+                'Mee Goreng': { en: 'Fried Noodles', ms: 'Mee Goreng', zh: '炒面', ta: 'மீ கோரெங்' },
+                'Mee Rebus': { en: 'Boiled Noodles', ms: 'Mee Rebus', zh: '卤面', ta: 'மீ ரெபுஸ்' },
+                'Mee Soto': { en: 'Soto Noodles', ms: 'Mee Soto', zh: '索多面', ta: 'மீ சோட்டோ' },
                 'Prawn Noodle': { en: 'Prawn Noodle', ms: 'Mee Udang', zh: '虾面', ta: 'இறால் நூடுல்' },
                 
                 // Side Items
@@ -3784,22 +3800,6 @@
             updateOrderSummary();
         }
 
-        function updateOrderSummary() {
-            const orderSummaryItems = document.getElementById('order-summary-items');
-            const paymentTotal = document.getElementById('payment-total');
-            
-            const summaryHTML = cart.map(item => `
-                <div class="summary-item">
-                    <span>${getTranslatedItemName(item.name)} x${item.quantity}</span>
-                    <span>RM ${(item.price * item.quantity).toFixed(2)}</span>
-                </div>
-            `).join('');
-            
-            orderSummaryItems.innerHTML = summaryHTML;
-            
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            paymentTotal.textContent = `RM ${total.toFixed(2)}`;
-        }
 
         function processPayment() {
             if (!selectedPayment) {
