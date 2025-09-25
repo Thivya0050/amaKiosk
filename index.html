@@ -47,20 +47,20 @@
         }
         
         .header {
-            height: 100px;
+            height: 80px; /* Reduced height for smaller appearance */
             background: url('wood.png') repeat-x;
             background-size: auto 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 20px;
+            padding: 0 15px; /* Reduced padding */
             position: relative;
             z-index: 100;
-            max-width: 250px; /* Further reduced for more precise width */
-            width: 35%; /* Further reduced for better centering */
+            max-width: 200px; /* Much smaller width */
+            width: 25%; /* Much smaller percentage */
             margin: 0 auto;
-            border-radius: 20px;
-            margin-top: 20px;
+            border-radius: 15px; /* Slightly smaller border radius */
+            margin-top: 15px; /* Reduced top margin */
         }
         
         .header-logo {
@@ -656,10 +656,13 @@
         /* Samsung Tab A8 Landscape Mode - 1920x1200 */
         @media (min-width: 1200px) and (max-width: 1920px) and (min-height: 800px) {
             .header {
-                max-width: 320px; /* More precise width for landscape mode */
-                width: 30%; /* Further reduced for better centering */
+                height: 70px; /* Smaller height for landscape */
+                max-width: 250px; /* Much smaller width for landscape mode */
+                width: 20%; /* Much smaller percentage for better centering */
                 margin: 0 auto;
-                margin-top: 20px;
+                margin-top: 15px; /* Reduced top margin */
+                padding: 0 15px; /* Reduced padding */
+                border-radius: 12px; /* Smaller border radius */
             }
             
             .menu-container {
@@ -720,13 +723,13 @@
         /* Tablets (768px - 1023px) */
         @media (min-width: 768px) and (max-width: 1023px) {
             .header {
-                height: 120px;
-                padding: 0 25px;
-                max-width: 300px; /* Further reduced for more precise width */
-                width: 45%; /* Further reduced for better centering */
-                border-radius: 20px;
+                height: 85px; /* Smaller height */
+                padding: 0 20px; /* Reduced padding */
+                max-width: 240px; /* Much smaller width */
+                width: 35%; /* Much smaller percentage for better centering */
+                border-radius: 15px; /* Smaller border radius */
                 margin: 0 auto;
-                margin-top: 20px;
+                margin-top: 15px; /* Reduced top margin */
             }
             
             .page {
@@ -764,10 +767,12 @@
         /* Samsung Tab A8 and Similar Tablets (768px - 1023px) - PRIORITY */
         @media (min-width: 768px) and (max-width: 1023px) {
             .header {
-                height: 100px;
-                padding: 0 25px;
-                max-width: 280px; /* Further reduced for more precise width */
-                width: 40%; /* Further reduced for better centering */
+                height: 80px; /* Smaller height */
+                padding: 0 20px; /* Reduced padding */
+                max-width: 220px; /* Much smaller width */
+                width: 30%; /* Much smaller percentage for better centering */
+                border-radius: 15px; /* Smaller border radius */
+                margin-top: 15px; /* Reduced top margin */
             }
             
             .page {
@@ -1162,12 +1167,12 @@
         /* Samsung Tab A8 Portrait Mode - 1200x1920 */
         @media (min-width: 800px) and (max-width: 1200px) and (min-height: 1200px) {
             .header {
-                height: 110px;
-                padding: 0 25px;
-                max-width: 280px; /* Further reduced for more precise width on portrait */
-                width: 40%; /* Further reduced for better centering */
-                border-radius: 18px;
-                margin-top: 15px;
+                height: 90px; /* Smaller height for portrait */
+                padding: 0 20px; /* Reduced padding */
+                max-width: 220px; /* Much smaller width for portrait */
+                width: 30%; /* Much smaller percentage for better centering */
+                border-radius: 15px; /* Smaller border radius */
+                margin-top: 10px; /* Reduced top margin */
             }
             
             .page {
